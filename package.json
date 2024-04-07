@@ -1,0 +1,51 @@
+{
+    "name": "utilies",
+    "version": "1.0.0",
+    "description": "JavaScript utilities helpers to enhance super faster developer experience, productivity, and optimized performance. Compatible with both browsers and limited NodeJS support.",
+    "main": "dist/index.js",
+    "types": "types/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "rm": "rm -rf ./dist ./types",
+        "upload": "tsc && npm publish  --access public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/appsaeed/utilies.git"
+    },
+    "keywords": [
+        "utilities functions",
+        "javascript utilities",
+        "javascript",
+        "utilities",
+        "utils",
+        "utility",
+        ""
+    ],
+    "author": "appsaeed",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/appsaeed/utilies.git/issues"
+    },
+    "homepage": "https://github.com/appsaeed/utilies.git#readme",
+    "files": [
+        "dist/",
+        "types/"
+    ],
+    "exports": {
+        ".": {
+            "types": "./types/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js",
+            "require": "./dist/index.js"
+        },
+        "./*": {
+            "types": "./types/*.d.ts",
+            "import": "./dist/*.js",
+            "default": "./dist/*.js",
+            "require": "./dist/*.js"
+        }
+    },
+    "devDependencies": {}
+}
