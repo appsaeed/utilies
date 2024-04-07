@@ -1,6 +1,6 @@
 {
     "name": "utilies",
-    "version": "1.0.0",
+    "version": "1.0.11",
     "description": "JavaScript utilities helpers to enhance super faster developer experience, productivity, and optimized performance. Compatible with both browsers and limited NodeJS support.",
     "main": "dist/index.js",
     "types": "types/index.d.ts",
@@ -15,13 +15,11 @@
         "url": "git+https://github.com/appsaeed/utilies.git"
     },
     "keywords": [
-        "utilities functions",
-        "javascript utilities",
-        "javascript",
+        "utilies",
         "utilities",
+        "javascript utilities",
         "utils",
-        "utility",
-        ""
+        "appsaeed"
     ],
     "author": "appsaeed",
     "license": "MIT",
