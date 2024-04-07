@@ -1,11 +1,12 @@
 {
     "name": "utilies",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "JavaScript utilities helpers to enhance super faster developer experience, productivity, and optimized performance. Compatible with both browsers and limited NodeJS support.",
     "main": "dist/index.js",
     "types": "types/index.d.ts",
     "type": "module",
     "scripts": {
+        "test": "jest",
         "build": "tsc",
         "rm": "rm -rf ./dist ./types",
         "upload": "tsc && npm publish  --access public"
@@ -45,5 +46,13 @@
             "require": "./dist/*.js"
         }
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@testing-library/dom": "^9.3.4",
+        "@testing-library/jest-dom": "^6.4.2",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.12.5",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "ts-jest": "^29.1.2"
+    }
 }

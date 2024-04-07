@@ -45,6 +45,7 @@ pnpm install utilies
 
 
 # Usage
+format date/time with your on choose by using js built-in option of [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) (browsers / NodeJS supports)
 ```js
 //common js 
 const { toDate } = require('utilies'); // common js required with name import
@@ -62,7 +63,7 @@ utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
 ```
 
 ## clipboard
-
+Working with **clipboard** (Only browsers supports)
 ```js
 import { toClipboard, copyImageToClipboard } from "utilies";
 
@@ -79,7 +80,7 @@ copyImageToClipboard(imageUrl);
 ```
 
 ## Errors
-Errors parsing to string
+Any Errors to string/text (browsers / NodeJS supports)
 ```js
 import { errorToString, errorsToString, extractError,  extractErrors } from "utilies";
 
@@ -120,7 +121,7 @@ hexToRgb("#1a098b"); //output: { red: number, green: number, blue: number } or  
 ## cookies
 
 **setCookie**
-set cookie only for client side document cookies so please when use client side cookies make sure doesn't have sensitive information
+set cookie only for client side document cookies so please when use client side cookies make sure doesn't have sensitive information (only browsers supports)
 ```js
 import { setCookie , getCookie, hasCookie } from "utilies";
 
@@ -161,7 +162,7 @@ toDate("2023-03-28 20:04:10", options, language);
 ```
 
 ## Detection
-
+Get system theme schema, check is mobile, is touch device etc (browsers)
 ```js
 import { is_dark , isMobile , deviceTheme, systemTheme, isTouchDevice } from "utilies";
 
@@ -179,7 +180,7 @@ console.log(isTouchDevice) //output: true or false
 ```
 
 ## Exportion
-
+Export to pdf, docs (Only browsers supports)
 ```js
 import { exportToPdf } from "utilies";
 import { exportToDocs } from "utilies";
@@ -230,7 +231,7 @@ uuidv4(); //output: string unique uuidv4
 ```
 
 ## Load
-
+Load/observer images, elements etc (Only browsers supports)
 ```js
 import { loadImage , lazyLoadImage , lazyLoadElm, isElementInViewport } from "utilies";
 
@@ -272,7 +273,7 @@ isViewElm(element) //output: true when the element is in view
 ## Storage
 
 **Session storage**
-
+working with **browser** session storage
 ```js
 import { getSession, setSession, removeSession } from "utilies";
 
@@ -292,7 +293,7 @@ cleanSession("sessionName");
 ```
 
 **local storage**
-
+**browser** local storage
 ```js
 import { setStorage, setSession, removeSession } from "utilies";
 
@@ -312,7 +313,7 @@ cleanStorage("store_name");
 ```
 
 **themeStorage**
-
+the theme store work only browser 
 ```js
 import { setThemeStore, getThemeStore } from "utilies";
 
@@ -327,7 +328,7 @@ getThemeStore('app_theme'); // output: light
 ```
 
 ## String
-
+Clear a string html tags to valid text (browsers / NodeJS supports)
 ```js
 import { removeHtml, cssDurationToMillisecond } from "utilies";
 
@@ -341,28 +342,43 @@ cssDurationToMillisecond("100ms"); // output: 100
 ```
 
 ## url
-
+Get Home/base url (only browsers support)
 ```js
-import { toSeoUrl, seoToString, unSlash, unSlashR, unSlashL } from "utilies";
-import { home_url, homeURL , base_url, baseURL } from "utilies";
+import { home_url, homeURL , base_url, baseURL , urlToText } from "utilies";
 
 //Get home url only browser support
 home_url() //output: http://example.com
-home_url('hello-world') //output: http://example.com/hello-world
-home_url(['hello','world']) //output: http://example.com/hello/world
+home_url(  'hello-world'  ) //output: http://example.com/hello-world
+home_url(['hello','world']) //output: http://example.com/hello-world
 
-//separator default: /
+//separator by default: /
+home_url(['hello','world'] , '/') //output: http://example.com/hello/world
 home_url(['hello','world'] , '_') //output: http://example.com/hello_world
-home_url(['hello','world'] , '-') //output: http://example.com/hello-world
-// home_url, homeURL, base_url, baseURL - all are some
 
-// text to SEO url
+homeURL(); //output: http://example.com
+baseURL(); //output: http://example.com
+base_url();//output: http://example.com
+// home_url, homeURL, base_url, baseURL - all are some
+```
+Get text to seo url and seo url to text (browsers / NodeJS supports) 
+```js
+import { textToSeo, toSeoUrl, seoToString , seoToText , urlToText } from "utilies";
+
+// text to seo friendly url
+textToSeo("Hello: I am javascript"); //output: hello-i-am-javascript
+//or
 toSeoUrl("Hello: I am javascript"); //output: hello-i-am-javascript
 
-//SEO url to string
+//seo url to valid text
 seoToString("hello-iam-javascript"); //output: hello i am javascript
+//or
+seoToText("hello-iam-javascript");  //output: hello i am javascript
 //or 
-urlToString("hello-iam-javascript") //output: hello i am javascript
+urlToText("hello-iam-javascript")   //output: hello i am javascript
+```
+Add/remove slash from a url (browsers / NodeJS supports) 
+```js
+import { textToSeo,toSeoUrl, seoToString, unSlash, unSlashR, unSlashL } from "utilies";
 
 //add slash end of the url
 addSlash("http://example.com"); //output: http://example.com/
@@ -391,10 +407,9 @@ unSlashR("/example.com/hello/"); //output: /example.com/hello
 
 
 ## Math
-
+Loan interest calculate (browsers / NodeJS supports)
 ```js
 import {loanPerMonth, loanPerYear , loanPerday } from "utilies";
-
 
 loanPerMonth(amount, interest, duration); //output: number of loan per month
 
@@ -405,7 +420,7 @@ loanPerday(amount, interest, duration); //output: number of loan per month
 ```
 
 ## validation
-
+email, phone number validation (browsers / NodeJS supports)
 ```js
 import { isMail, isPhoneNumber } from "utilies";
 

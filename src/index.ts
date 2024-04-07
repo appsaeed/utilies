@@ -15,6 +15,6 @@ export * from './proto';
 export * from './storage';
 export * from './str';
 export * from './url';
-export * from './utiles';
+export * from './utilies';
 export * from './validation';
 

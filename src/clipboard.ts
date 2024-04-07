@@ -12,11 +12,11 @@ export async function copyImageToClipboard(url: string): Promise<boolean> {
         [blob.type]: blob,
       }),
     ]);
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       resolve(true);
     });
   } catch (error) {
-    return new Promise((resolve, reject) => {
+    return new Promise((_resolve, reject) => {
       reject(error);
     });
   }
@@ -82,12 +82,12 @@ export function fallbackToClipboard(text: string) {
         "failed to copy text to clipboard useing dom execCommand"
       );
     } else {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _reject) => {
         resolve(true);
       });
     }
   } catch (err) {
-    return new Promise((resolve, reject) => {
+    return new Promise((_resolve, reject) => {
       reject(err);
     });
   }

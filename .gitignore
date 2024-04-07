@@ -11,9 +11,6 @@ dist
 types
 *.local
 !.gitignore
-.js
-./*.js
-/*.js
-/**/*.js
+test.txt
 
 

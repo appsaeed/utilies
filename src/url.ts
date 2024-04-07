@@ -1,7 +1,7 @@
 /**
  * any string to SEO url
  */
-export function toSeoUrl(url: string): string {
+export function textToSeo(url: string): string {
     return url
         .toString()
         .replace(/[\u0300-\u036f]/g, "") // Remove illegal characters
@@ -13,6 +13,8 @@ export function toSeoUrl(url: string): string {
         .replace(/^-*/, "") // Remove starting dashes
         .replace(/-*$/, ""); // Remove trailing dashes
 }
+export const toSeoUrl = textToSeo;
+export const toSeoURL = textToSeo;
 
 /**
  * SEO url to a valid string
@@ -35,6 +37,7 @@ export function seoToString(url: string): string {
  * url to plain text
  */
 export const urlToString = seoToString;
+export const urlToText = seoToString;
 
 
 /**
@@ -45,12 +48,12 @@ export const unSlash = (str: string): string => str.replace(/(\/$)|(^\/)/g, "");
 /**
  * clean up starting slash from a string
 */
-export const unSlashL = (str: string): string => str.replace(/^\//g, "");
-
+export const unSlashL = (str: string): string => str.replace(/(^\/)/, "");
+export const unSlashLeft = unSlashL;
 /**
  * clean up last slash from a string
 */
-export const unSlashR = (str: string): string => str.replace(/^\//g, "");
+export const unSlashR = (str: string): string => str.replace(/(\/$)/g, "");
 export const unSlashEnd = unSlashR;
 
 /**
@@ -65,7 +68,7 @@ export const addSlashs = (str: string): string => str.replace(/(\/$)|(^\/)/g, ""
  * @param {string} sp 
  * @returns 
  */
-export function home_url(paths?: string[] | string, sp: string = '/'): string {
+export function home_url(paths?: string[] | string, sp: string = '-'): string {
     const base_url = location.protocol + '//' + location.host;
     if (Array.isArray(paths)) {
         return base_url + '/' + paths.map(unSlash).join(sp);

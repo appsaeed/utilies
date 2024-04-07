@@ -72,7 +72,7 @@ export function uuidv4() {
         hexStringArray.push(arr[i].toString(16));
     }
 
-    var uuid = hexStringArray.join("").replace(/^.{8}(.{4}).{3}(.{3}).{12}$/, function (match, p1, p2) {
+    var uuid = hexStringArray.join("").replace(/^.{8}(.{4}).{3}(.{3}).{12}$/, function (_match, p1, p2) {
         return p1 + '-' + p2 + '-4' + Date.now() % 1000000000;
     });
 
