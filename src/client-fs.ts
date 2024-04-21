@@ -1,4 +1,4 @@
-import { FileMinetype } from "./types/files";
+import { FileMinetype } from "../src copy/types/files";
 
 export type FileOptions = {
   name: string;

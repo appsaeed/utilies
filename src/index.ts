@@ -5,6 +5,7 @@ export * from './cookies';
 export * from './datetime';
 export * from './detection';
 export * from './dom';
+export * from './encryption';
 export * from './errors';
 export * from './export';
 export * from './generate';

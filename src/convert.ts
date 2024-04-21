@@ -61,3 +61,9 @@ export function hexToRgb(hex: string) {
     }
     : null;
 }
+
+
+export const base64en = btoa;
+export const base64de = atob;
+export const base64encode = btoa;
+export const base64decode = atob;

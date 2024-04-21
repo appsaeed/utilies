@@ -1,4 +1,4 @@
-import { RangeOf } from "./types/number";
+import { RangeOf } from "../src copy/types/number";
 
 /**
  * generate random number between start and end using math.random

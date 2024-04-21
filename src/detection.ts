@@ -1,4 +1,4 @@
-import { ThemeType } from "./types/themes";
+import { ThemeType } from "../src copy/types/themes";
 
 /**
  * detect device dark schema
