@@ -8,9 +8,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest  # Or the desired OS for your project
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Use Node.js 16
         uses: actions/setup-node@v4
         with:
           node-version: 20.x  # Update if needed for your project
