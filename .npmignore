@@ -1,5 +1,5 @@
 src/
-test*
-test/
+tests*
+tests/
 jest.config.js
 jest.config.cjs
