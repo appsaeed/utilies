@@ -11,5 +11,6 @@ distS
 *.local
 !.gitignore
 test.txt
-
+index.html
+main.js
 
