@@ -1,31 +1,32 @@
-name: npm package publish
+name: Publish NPM Package
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]  # Adjust branch(es) to trigger publishing
 
 jobs:
-  build:
-    name: build
-    runs-on: ubuntu-latest
+  publish:
+    runs-on: ubuntu-latest  # Or the desired OS for your project
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-a
-      - name: Setup Node.js 20.x
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: 16  # Update if needed for your project
 
-      - name: Install Dependencies
-        run: npm run build
+      - name: Install dependencies
+        run: npm install
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: npm publish  --access public
+      - name: Build (if necessary)
+        run: npm run build  # Replace with your build command if applicable
+
+      - name: Authenticate to npm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Replace with your secret name
+        run: npm whoami
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
