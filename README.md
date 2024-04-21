@@ -5,31 +5,33 @@ JavaScript utilities helpers to enhance super faster developer experience, produ
 
 
 ## Overview
+jump to a specific section help of this overview
 
 <!-- START -->
-
--   [Installation](#install) Easily install with npm, pnpm or yarn and start using.
--   [clipboard](#clipboard) JavaScript clipboard function for browser
--   [errors](#errors) Extract errot to string for browser and nodejs
--   [convert](#convert) convert utility string number etc.
--   [cookies](#cookies) This cookies only works client side javascript
--   [datetime](#datetime) convience function to convert date and time (comming more..)
--   [detection](#detection) detection device theme scheme and browser information
--   [exportion](#exportion) export pdt or doc file with client side javascript
--   [generate](#generate) generate random number uuid and much more
--   [load](#load) load utilites functions such as image,url , document
--   [storage](#storage) browser local storage or session management
--   [str](#string) string utilies some functions  to rmeove and add letters
--   [url](#url) manage url to string and string to url is very convenient
--   [math](#math) simple math calculations for web applications 
--   [validation](#validation) validate client side email, number ete.
--   [author](#author) project author details and github page
--   [license](#license) license
-
+-   [Installation](#Installation) Easily install with and start using.
+-   [Utility](#Utility) Necessary JavaScript utility functions and methods.
+-   [Clipboard](#Clipboard) Copy text/image to clipboard function for browser
+-   [Convert](#Convert) Convert price, symbol, string, number etc.
+-   [Cookies](#Cookies)  cookies uses secure level encrypted data (only browsers)
+-   [Datetime](#Datetime) convience function to convert date and time (comming more..)
+-   [Detection](#Detection) detection device theme scheme and browser information etc.
+-   [Encryption](#Encryption) simple xor and window crypto encryption with secret key
+-   [Errors](#Errors) Errors to string convert to display message 
+-   [Exporting](#Exporting) Exportion pdf,docs files with client side javascript
+-   [Generate](#Generate) generate random string, randmo number, uuid and much more
+-   [Load](#Load) load dom, elements, images and many more functions (only browser)
+-   [Math](#Math) simple math calculations in javascript applications 
+-   [Storage](#Storage) local storage, session used to get, save data (only browser)
+-   [String](#String) remove html from string and modify a string (comming more...)
+-   [URL](#URL) modify url/string is very convenient by using this package
+-   [Validation](#Validation) validate client side email, number, form field ete.
+-   [Author](#Author) Package author details and github page
+-   [Developers](#Developers) Developers maintaince repository and command scripts
+-   [License](#License) MIT License
 <!--FINISHED-->
 
-## Install
 
+## Installation
 Install with [npm](https://www.npmjs.com/)
 ```sh
 npm i utilies
@@ -43,27 +45,33 @@ or Install with [pnpm](https://www.npmjs.com/package/pnpm)
 pnpm install utilies
 ```
 
-
 # Usage
-format date/time with your on choose by using js built-in option of [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) (browsers / NodeJS supports)
-```js
-//common js 
-const { toDate } = require('utilies'); // common js required with name import
-toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+## Utility
+Use try-catch in single line 
+````js
+import { catchOrNull, catchOR } from 'utilies';
 
-const utils = require('utilies'); // common js import all
-utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+//e.g catchOrNull( callback, callbackError )
 
-//es6 module import syntax 
-import { toDate } from 'utilies'; // es6 name import
-toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+catchOrNull(()=> 'Hello World!'); //output: Hello World!
 
-import * as utils from "utilies"; // es6 import all
-utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
-```
 
-## clipboard
-Working with **clipboard** (Only browsers supports)
+function helloWorld(){
+    throw "Server Error";
+}
+
+//will not throw exception ereror
+catchOrNull(helloWorld); //output: null
+catchOR(helloWorld, false); //output: false
+catchOR(helloWorld, 0); //output: 0
+
+//get error message 
+catchOrNull(helloWorld, function(error){
+    console.log('Custom: ',error)
+});
+````
+## Clipboard
+Copy text/image to clipboard using window navigator [clipboard](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard) or fallback document textarea.
 ```js
 import { toClipboard, copyImageToClipboard } from "utilies";
 
@@ -78,24 +86,7 @@ const imageUrl = "image/examples/image.png";
 
 copyImageToClipboard(imageUrl);
 ```
-
-## Errors
-Any Errors to string/text (browsers / NodeJS supports)
-```js
-import { errorToString, errorsToString, extractError,  extractErrors } from "utilies";
-
-//any error to string 
-errorToString(['unknow', 'fatal error']) //output: "unknow, fatal error"
-//or
-extractError(['unknow', 'fatal error']) //output: "unknow, fatal error"
-
-//extract many errors to a string
-errorsToString('error 1', 'error 2') //output: "error 1, error 2"
-// or 
-extractErrors('error 1', 'error 2') //output: "error 1, error 2"
-```
-
-## convert
+## Convert
 ```js
 import { formatPrice, currencyToSymbol } from "utilies";
 
@@ -117,10 +108,7 @@ rgbToHex(10, 20, 100); //output: hex string: #0a1464
 
 hexToRgb("#1a098b"); //output: { red: number, green: number, blue: number } or  null
 ```
-
-## cookies
-
-**setCookie**
+## Cookies
 set cookie only for client side document cookies so please when use client side cookies make sure doesn't have sensitive information (only browsers supports)
 ```js
 import { setCookie , getCookie, hasCookie } from "utilies";
@@ -135,8 +123,23 @@ getCookie(cookieName) // output: example_value;
 
 hasCookie(cookieName); //output: true or false;
 ```
-
 ## Datetime
+format date/time with your on choose by using js built-in option of [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) (browsers / NodeJS supports)
+```js
+//common js 
+const { toDate } = require('utilies'); // common js required with name import
+toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+
+const utils = require('utilies'); // common js import all
+utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+
+//es6 module import syntax 
+import { toDate } from 'utilies'; // es6 name import
+toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+
+import * as utils from "utilies"; // es6 import all
+utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+```
 
 ```js
 import { toDatetime } from "utilies";
@@ -158,9 +161,7 @@ const language = 'en-US' //or ['en-US', 'en-GB'];
 toDatetime("2023-03-28 20:04:10", options, language);
 toTime("2023-03-28 20:04:10", options, language);
 toDate("2023-03-28 20:04:10", options, language);
-
 ```
-
 ## Detection
 Get system theme schema, check is mobile, is touch device etc (browsers)
 ```js
@@ -178,8 +179,36 @@ console.log(isMobile) //output: true or false
 //detect is touch device
 console.log(isTouchDevice) //output: true or false
 ```
+## Encryption
+Use simple encryption in javascript application browser and nodejs environment
+````js
+import { decryptSync, encryptSync } from 'utilies';
 
-## Exportion
+//encrypted text using secret key
+const encrypted = encryptSync('Hello world!', 'my_secret')
+console.log('Encrypted: ', encrypted)//Encrypted:  JRwzHwpDBQoGAR1+
+
+//decrypted text using secret key and encrypted
+const decrypted = decryptSync('JRwzHwpDBQoGAR1+', 'my_secret')
+console.log('Decrypted: ', decrypted) //Decrypted:  Hello world!
+
+````
+## Errors
+Any Errors to string/text (browsers / NodeJS supports)
+```js
+import { errorToString, errorsToString, extractError,  extractErrors } from "utilies";
+
+//any error to string 
+errorToString(['unknow', 'fatal error']) //output: "unknow, fatal error"
+//or
+extractError(['unknow', 'fatal error']) //output: "unknow, fatal error"
+
+//extract many errors to a string
+errorsToString('error 1', 'error 2') //output: "error 1, error 2"
+// or 
+extractErrors('error 1', 'error 2') //output: "error 1, error 2"
+```
+## Exporting
 Export to pdf, docs (Only browsers supports)
 ```js
 import { exportToPdf } from "utilies";
@@ -199,9 +228,7 @@ options accpeted properties
 }
 */
 ```
-
 ## Generate
-
 ```js
 import { random , uniqid , randomString, uuid, uuidv1, uuidv4, avatar } from "utilies";
 
@@ -219,17 +246,14 @@ uniqid('cg_') //output: cg_omvowejg
 randomString(20, 'cg_') //output: random string e.g cg_omvowejg
 
 //generate image url for avatar by latters
-avatar("Javascript"); //output:https://ui-avatars.com/api/?name=Javascript
-
+avatar("Javascript"); //output:https://ui-avatars.com/api/?name=Javascripts
 
 uuid(); //output: string unique uuid
 
 uuidv1(); //output: string unique uuidv1
 
 uuidv4(); //output: string unique uuidv4
-
 ```
-
 ## Load
 Load/observer images, elements etc (Only browsers supports)
 ```js
@@ -269,7 +293,17 @@ isElementInViewport(element) //output: true when the element is in view
 //or 
 isViewElm(element) //output: true when the element is in view
 ```
+## Math
+Loan interest calculate (browsers / NodeJS supports)
+```js
+import {loanPerMonth, loanPerYear , loanPerday } from "utilies";
 
+loanPerMonth(amount, interest, duration); //output: number of loan per month
+
+loanPerYear(amount, interest, duration); //output: number of loan per month
+
+loanPerday(amount, interest, duration); //output: number of loan per month
+```
 ## Storage
 
 **Session storage**
@@ -313,7 +347,7 @@ cleanStorage("store_name");
 ```
 
 **themeStorage**
-the theme store work only browser 
+The theme store using built-in localStorage 
 ```js
 import { setThemeStore, getThemeStore } from "utilies";
 
@@ -326,9 +360,8 @@ setThemeStore("light", 'app_theme');
 
 getThemeStore('app_theme'); // output: light
 ```
-
 ## String
-Clear a string html tags to valid text (browsers / NodeJS supports)
+Modify a string, html string tags to valid text etc (browsers/NodeJS supports)
 ```js
 import { removeHtml, cssDurationToMillisecond } from "utilies";
 
@@ -339,9 +372,10 @@ removeHtml("<h1>Hello world</h1>"); // output: Hello world
 //css duration to milliseconds
 cssDurationToMillisecond("1s"); // output: 1000
 cssDurationToMillisecond("100ms"); // output: 100
+//or 
+cssToMillisecond('1s'); // output: 1000
 ```
-
-## url
+## URL
 Get Home/base url (only browsers support)
 ```js
 import { home_url, homeURL , base_url, baseURL , urlToText } from "utilies";
@@ -404,23 +438,8 @@ unSlashL("/example.com/hello/"); //output: example.com/hello/
 //remove slash from right side of path or url
 unSlashR("/example.com/hello/"); //output: /example.com/hello
 ```
-
-
-## Math
-Loan interest calculate (browsers / NodeJS supports)
-```js
-import {loanPerMonth, loanPerYear , loanPerday } from "utilies";
-
-loanPerMonth(amount, interest, duration); //output: number of loan per month
-
-loanPerYear(amount, interest, duration); //output: number of loan per month
-
-loanPerday(amount, interest, duration); //output: number of loan per month
-
-```
-
-## validation
-email, phone number validation (browsers / NodeJS supports)
+## Validation
+Validate email, phone number (browsers / NodeJS supports)
 ```js
 import { isMail, isPhoneNumber } from "utilies";
 
@@ -431,27 +450,19 @@ isPhoneNumber("abc10832749"); //output: false
 
 isPhoneNumber("10986499204"); //output: true
 ```
-
 ## Author
-
 **Saeed Web Developer**
 
 -   [website](https://appsaeed.github.io)
 -   [Linkden](https://www.linkedin.com/in/appsaeed)
 -   [email](appsaeed7@gmail.com)
-
 ## Developers
-
 ```sh
 git clone https://github.com/appsaeed/utilies.git
 
 # TypeScript build
-npm run build
-
-# publish to npm package
-npm run upload
+npm run build # test and compile typeScript
 ```
-
 ## License
 
 Copyright © 2023 [appsaeed](https://appsaeed.github.io)

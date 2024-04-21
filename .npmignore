@@ -3,3 +3,4 @@ tests*
 tests/
 jest.config.js
 jest.config.cjs
+.github

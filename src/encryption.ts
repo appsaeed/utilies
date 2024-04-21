@@ -79,22 +79,18 @@ export class Crypte {
 
 export class XorCrypto {
 
+
     #secret = 'm^Ul8Y1qGpPO-#9j;Gt2KEDF8P@btDHYIC01T';
 
-    /**
-   * secret key set to encrypt and decrypt with secure layer
-   * @param secret key to set in secret cookie
-   */
-    public setkey(secret: string) {
-        this.#secret = secret;
-        return this;
+    constructor(secret?: string) {
+        if (secret) this.#secret = secret;
     }
 
     /**
      * Generates key as a string to be work with encrypted and decrypted
      * @param {string} key secret key to generate key
      */
-    protected generateKey(key: string): string {
+    public generateKey(key: string): string {
         let generatedKey = '';
         const keyLength = key.length;
         for (let i = 0; i < keyLength; i++) {
@@ -140,5 +136,22 @@ export class XorCrypto {
 }
 
 
-export const encryptSync = new XorCrypto().encrypt.bind(XorCrypto);
-export const decryptSync = new XorCrypto().decrypt.bind(XorCrypto);
+/**
+ * Encrypt a string using secure encryption key as xor one secure layer
+ * @param {string} text text for the generated encryption version
+ * @param {string} secret secret key to protect encryption text
+ * @returns {string} encrypted text
+ */
+export function encryptSync(text: string, secret?: string): string {
+    return (new XorCrypto(secret)).encrypt(text);
+}
+
+/**
+* Decrypt a string from encrypted text with a secure layer as key as pair
+* @param {string} text text for the generated encryption version
+* @param {string} secret secret key to protect encryption text
+* @returns {string} encrypted text
+*/
+export function decryptSync(text: string, secret?: string): string {
+    return (new XorCrypto(secret)).decrypt(text);
+}

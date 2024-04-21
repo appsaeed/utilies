@@ -1,49 +1,47 @@
 export * from './dom';
 /**
- * Load image with javascript 
- * @param {string} src 
+ * Load image with javascript
+ * @param {string} src
  * @returns {Promise<HTMLImageElement>}
  */
-export function loadImage(src: string): Promise<HTMLImageElement> {
-    return new Promise<HTMLImageElement>((resolve, reject) => {
+export function loadImage(src) {
+    return new Promise((resolve, reject) => {
         const image = new Image();
         image.src = src;
         image.addEventListener("load", () => {
             if (image.complete && image.naturalWidth) {
                 resolve(image);
-            } else {
+            }
+            else {
                 reject("couldn't load the image");
             }
         });
         image.addEventListener("error", reject);
     });
 }
-
-
 /**
  * Load image with IntersectionObserver
- * @param {string} src 
+ * @param {string} src
  * @returns {Promise<HTMLImageElement>}
  */
-export function lazyLoadImage(src: string): Promise<HTMLImageElement> {
-    return new Promise<HTMLImageElement>((resolve, reject) => {
+export function lazyLoadImage(src) {
+    return new Promise((resolve, reject) => {
         //create observable view
-        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+        const observerCallback = (entries) => {
             entries.forEach((entry) => {
                 if (entry.target && entry.isIntersecting) {
-                    resolve(entry.target as HTMLImageElement);
+                    resolve(entry.target);
                 }
             });
         };
-
         const observer = new IntersectionObserver(observerCallback);
-
         const image = new Image();
         image.src = src;
         image.addEventListener("load", () => {
             if (image.complete && image.naturalWidth) {
                 observer.observe(image);
-            } else {
+            }
+            else {
                 reject("couldn't load the image");
                 observer.unobserve(image);
                 observer.disconnect();
@@ -56,20 +54,15 @@ export function lazyLoadImage(src: string): Promise<HTMLImageElement> {
         });
     });
 }
-
-type LLEConfig = {
-    once?: boolean;
-};
-
 /**
  * Load elements on view element
- * @param {Element | HTMLElement} element 
- * @param {LLEConfig} config 
+ * @param {Element | HTMLElement} element
+ * @param {LLEConfig} config
  * @returns {Promise<HTMLElement | Element>}
  */
-export function lazyLoadElm(element: Element | HTMLElement, config?: LLEConfig): Promise<HTMLElement | Element> {
+export function lazyLoadElm(element, config) {
     const { once = true } = config || {};
-    return new Promise<Element | HTMLElement>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         try {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -82,9 +75,10 @@ export function lazyLoadElm(element: Element | HTMLElement, config?: LLEConfig):
                     }
                 });
             });
-
-            if (element) observer.observe(element);
-        } catch (error) {
+            if (element)
+                observer.observe(element);
+        }
+        catch (error) {
             reject(error);
         }
     });
