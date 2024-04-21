@@ -1,6 +1,6 @@
-import { ThemeType } from "../src copy/types/themes";
 import { systemTheme } from "./detection";
 import { decryptSync, encryptSync } from "./encryption";
+import { ThemeType } from "./types/themes";
 import { catchOrNull } from "./utilies";
 
 /**
