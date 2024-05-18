@@ -3,7 +3,9 @@ JavaScript utilities helpers to enhance super faster developer experience, produ
 
 > Fast, generic JavaScript utilities helpers to boost your project productivity and performance
 
-
+# Other packages
+- [vite-svg](https://github.com/appsaeed/vite-svg)
+- [vite-sitemap](https://github.com/appsaeed/vite-sitemap)
 ## Overview
 jump to a specific section help of this overview
 
@@ -46,9 +48,6 @@ pnpm install utilies
 ```
 
 # Usage
-# Other packages
-
-## Utility
 Use try-catch in single line 
 ````js
 import { catchOrNull, catchOR } from 'utilies';
