@@ -4,6 +4,8 @@ JavaScript utilities helpers to enhance super faster developer experience, produ
 > Fast, generic JavaScript utilities helpers to boost your project productivity and performance
 
 # Other packages
+ Best NPM Packages and Vite Plugins" - Uncover user-friendly tools that boost performance and simplify tasks in your Vite-based web development. From streamlining workflows to adding exciting features, find everything you need to take your projects to the next level.
+ <br>
 - [vite-svg](https://github.com/appsaeed/vite-svg) | Vite SVG plugin: effortless SVG import with support for various formats (JSON, raw string, object, etc.).
 - [vite-sitemap](https://github.com/appsaeed/vite-sitemap) | The plugin helps to create a sitemap in the vite project.
 ## Overview
