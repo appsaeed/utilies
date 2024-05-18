@@ -5,9 +5,9 @@ JavaScript utilities helpers to enhance super faster developer experience, produ
 
 # Other packages
 - [vite-svg](https://github.com/appsaeed/vite-svg) | Vite SVG plugin: effortless SVG import with support for various formats (JSON, raw string, object, etc.).
-- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) | The plugin helps to automatically create a sitemap. A sitemap is like a map for search engines, telling them what pages you have on your site. This makes it easier for search engines to find website and urls!
+- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) | The plugin helps to create a sitemap in the vite project.
 ## Overview
-jump to a specific section help of this overview
+Jump to a specific section to help with this overview
 
 <!-- START -->
 -   [Installation](#Installation) Easily install with and start using.
