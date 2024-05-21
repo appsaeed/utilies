@@ -1,14 +1,5 @@
 import { pathJoin, queryTojson, unSlash, url } from '../src/url';
 
-Object.defineProperty(window, 'location', {
-    value: {
-        host: 'example.com',
-        protocol: 'http:',
-        // Add other location properties if needed
-    },
-    writable: true, // Optional: Allows tests to modify mocked location (use with caution)
-});
-
 test('url unslash', () => {
     expect(unSlash('/example.com/')).toBe('example.com');
 })
