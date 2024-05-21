@@ -39,11 +39,12 @@ export function seoToString(url: string): string {
 export const urlToString = seoToString;
 export const urlToText = seoToString;
 
+export const beString = (str: any): string => String(str);
 
 /**
  * clean up starting and ending slash from a string
  */
-export const unSlash = (str: string): string => str.replace(/(\/$)|(^\/)/g, "");
+export const unSlash = (str: string): string => beString(str).replace(/(\/$)|(^\/)/g, "");
 
 /**
  * clean up starting slash from a string
@@ -60,25 +61,65 @@ export const unSlashEnd = unSlashR;
  * add a slash to the url of endpoint
  */
 export const addSlash = (str: string): string => unSlash(str).replace(/$/, "/");
-export const addSlashs = (str: string): string => str.replace(/(\/$)|(^\/)/g, "");
+export const addSlashs = (str: string): string => unSlash(str).replace(/(\/$)|(^\/)/g, "/");
 
-/**
- * Create base url by using window location object
- * @param {string|string[]} paths 
- * @param {string} sp 
- * @returns 
- */
-export function home_url(paths?: string[] | string, sp: string = '-'): string {
-    const base_url = location.protocol + '//' + location.host;
-    if (Array.isArray(paths)) {
-        return base_url + '/' + paths.map(unSlash).join(sp);
-    } else if (paths && typeof paths === 'string') {
-        return base_url + '/' + unSlash(paths);
-    } else {
-        return base_url;
+
+export function pathArrayToString(path: string | string[]) {
+    if (Array.isArray(path)) {
+        return path.filter(Boolean)
+            .filter(text => text != '')
+            .filter(text => typeof text === "string" || typeof text === "number")
+            .map(unSlash)
+            .join("/").toString();
     }
+    return path;
 }
 
-export const base_url = home_url;
-export const baseURL = home_url;
-export const homeURL = home_url;
+/**
+ * string path joing 
+ * @param paths
+ */
+export function pathJoin(...paths: any[]): string {
+    return [...paths]
+        .map(pathArrayToString)
+        .filter(Boolean)
+        .filter(text => text != '')
+        .filter(text => typeof text === "string" || typeof text === "number")
+        .map(unSlash)
+        .join("/").toString();
+}
+export const urlJoin = pathJoin;
+
+
+/**
+ * Get home url and aslo add path 
+ */
+export function url(...paths: any) {
+    let window_url = null;
+    try {
+        window_url = location.protocol + '//' + location.host
+    } catch (_err) {
+        window_url = null;
+    }
+    return pathJoin(window_url, ...paths);
+}
+
+/**
+ * Query string to javascript object
+ * @param query query string
+ */
+export function queryTojson(query: string): object | null {
+    var obj: any = {};
+    var qury = query.split("&");
+    if (typeof qury === "object" && qury.length > 1) {
+        for (let i = 0; i < qury.length; i++) {
+            if (qury[i].split("=").length === 2) {
+                const q = qury[i].split("=");
+                obj[q[0]] = q[1];
+            }
+        }
+        return obj;
+    } else {
+        return null;
+    }
+}

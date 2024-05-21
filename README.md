@@ -111,6 +111,14 @@ rgbToHex(10, 20, 100); //output: hex string: #0a1464
 
 hexToRgb("#1a098b"); //output: { red: number, green: number, blue: number } or  null
 ```
+query string parameters to json object
+
+```js
+import { queryTojson } from 'utilies';
+queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
+//output: { name: 'Javascript', ext: 'js', founder: 'Brendan Eich' }
+```
+
 ## Cookies
 set cookie only for client side document cookies so please when use client side cookies make sure doesn't have sensitive information (only browsers supports)
 ```js
@@ -379,23 +387,14 @@ cssDurationToMillisecond("100ms"); // output: 100
 cssToMillisecond('1s'); // output: 1000
 ```
 ## URL
-Get Home/base url (only browsers support)
+Get Home url (only browsers support)
 ```js
 import { home_url, homeURL , base_url, baseURL , urlToText } from "utilies";
 
 //Get home url only browser support
-home_url() //output: http://example.com
-home_url(  'hello-world'  ) //output: http://example.com/hello-world
-home_url(['hello','world']) //output: http://example.com/hello-world
-
-//separator by default: /
-home_url(['hello','world'] , '/') //output: http://example.com/hello/world
-home_url(['hello','world'] , '_') //output: http://example.com/hello_world
-
-homeURL(); //output: http://example.com
-baseURL(); //output: http://example.com
-base_url();//output: http://example.com
-// home_url, homeURL, base_url, baseURL - all are some
+url() //output: http://example.com
+url('hello-world') //output: http://example.com/hello-world
+url(['hello','world']) //output: http://example.com/hello/world
 ```
 Get text to seo url and seo url to text (browsers / NodeJS supports) 
 ```js
@@ -441,6 +440,25 @@ unSlashL("/example.com/hello/"); //output: example.com/hello/
 //remove slash from right side of path or url
 unSlashR("/example.com/hello/"); //output: /example.com/hello
 ```
+**Path/URL join** (support NodeJS & Browsers by module support)
+```js
+import { pathJoin, urlJoin } from "utilies";
+
+pathJoin('example.com', 'hello', false, [], {name: 'Saeed'}, 10) 
+//output: example.com/hello/10
+pathJoin('example.com', 'hello', false, ['new', 'task'], { name: 'Saeed' }, 10) 
+//output: example.com/hello/new/task/10
+
+//or might be urlJoin is pathJoin
+```
+query string parameters to json object
+
+```js
+import { queryTojson } from 'utilies';
+queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
+//output: { name: 'Javascript', ext: 'js', founder: 'Brendan Eich' }
+```
+
 ## Validation
 Validate email, phone number (browsers / NodeJS supports)
 ```js
