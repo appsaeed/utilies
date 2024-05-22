@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 node_modules
-distS
+dist
 *.local
 !.gitignore
 test.txt
