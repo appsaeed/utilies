@@ -1,7 +1,7 @@
 name: Node.js Package
 
 on:
-  
+
   workflow_dispatch:
 
   push:
@@ -40,15 +40,15 @@ jobs:
       - run: npm run build
       - run: |
           node <<EOF
-            import fs from 'fs';
-            import pkg from './package.json' assert { type: 'json' };
-            const _content = {...pkg, name: '@appsaeed/utilies'};
-            fs.writeFile('package.json', JSON.stringify(_content), 'utf-8',(err)=>{
-                if(err) {
+          const fs = require('fs');
+          const pkg = require('./package.json');
+          const _content = { ...pkg, name: '@appsaeed/utilies' };
+          fs.writeFile('package.json', JSON.stringify(_content), 'utf-8', (err) => {
+              if (err) {
                   console.warn(err)
                   process.exit(0);
-                };                
-            })
+              };
+          })
           EOF
       - run: npm publish --access public
         env:
