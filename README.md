@@ -242,6 +242,9 @@ options accpeted properties
 ## Generate
 ```js
 import { random , uniqid , randomString, uuid, uuidv1, uuidv4, avatar } from "utilies";
+import { generateToken } from 'utilies';
+
+generateToken(10) // output: e.g: GkF25LJxSI
 
 //generate random number between start number to end number
 random(10, 100)//output: between 10, 100

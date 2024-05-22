@@ -1,6 +1,6 @@
 {
     "name": "utilies",
-    "version": "1.0.23",
+    "version": "1.24.0",
     "description": "JavaScript utilities helpers to enhance super faster developer experience, productivity, and optimized performance. Compatible with both browsers and limited NodeJS support.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

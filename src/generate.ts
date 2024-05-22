@@ -85,3 +85,21 @@ export function uuidv4() {
  * uses api: https://github.com/LasseRafn/ui-avatars
  */
 export const avatar = (n = "s") => `https://ui-avatars.com/api/?name=${n}`;
+
+
+/**
+ * Generate token by define length
+ * @param length length of characters to generate
+ * @returns 
+ */
+export function generateToken(length: number = 30): string {
+    const token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    let a: string[] = token.split("");
+    let b: number | string[] = [];
+    let rand: number;
+    for (let i = 0; i < length; i++) {
+        rand = Number((Math.random() * (a.length - 1)).toFixed(0));
+        b[i] = a[rand];
+    }
+    return b.join("");
+}
