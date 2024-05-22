@@ -1,11 +1,13 @@
 name: Node.js Package
 
-# on:
-#   workflow_dispatch:
-#   push:
-#     branches:
-#       - main
 on:
+  
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
   release:
     types: [published]
 
@@ -20,14 +22,13 @@ jobs:
           node-version: "20.x"
           registry-url: "https://registry.npmjs.org"
       - run: npm run build
-      - run: npm publish  --access public
+        # - run: npm publish  --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-github:
     runs-on: ubuntu-latest
     steps:
-
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -37,6 +38,18 @@ jobs:
 
       - run: npm config set registry https://npm.pkg.github.com
       - run: npm run build
-      - run: npm publish --name @appsaeed/utilies --access public
+      - run: |
+          node <<EOF
+            import fs from 'fs';
+            import pkg from './package.json' assert { type: 'json' };
+            const _content = {...pkg, name: '@appsaeed/utilies'};
+            fs.writeFile('package.json', JSON.stringify(_content), 'utf-8',(err)=>{
+                if(err) {
+                  console.warn(err)
+                  process.exit(0);
+                };                
+            })
+          EOF
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PACKAGES }}
