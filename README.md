@@ -13,7 +13,8 @@ Jump to a specific section to help with this overview
 
 <!-- START -->
 -   [Installation](#Installation) Easily install with and start using.
--   [Utility](#Utility) Necessary JavaScript utility functions and methods.
+-   [Usage](#Usage) Please look at the section before start the package.
+-   [Common](#Common) Necessary JavaScript utility functions and methods.
 -   [Clipboard](#Clipboard) Copy text/image to clipboard function for browser
 -   [Convert](#Convert) Convert price, symbol, string, number etc.
 -   [Cookies](#Cookies)  cookies uses secure level encrypted data (only browsers)
@@ -48,8 +49,15 @@ or Install with [pnpm](https://www.npmjs.com/package/pnpm)
 ```sh
 pnpm install utilies
 ```
-
 # Usage
+```js
+import { yourfunctions } from 'utilies'
+//or 
+import * as utilies from 'utilies'
+utilies.yourfunctions
+```
+
+# Common
 Use try-catch in single line 
 ````js
 import { catchOrNull, catchOR } from 'utilies';
@@ -76,8 +84,6 @@ catchOrNull(helloWorld, function(error){
 ## Clipboard
 Copy text/image to clipboard using window navigator [clipboard](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard) or fallback document textarea.
 ```js
-import { toClipboard, copyImageToClipboard } from "utilies";
-
 //copy text to clipboard
 toClipboard("hello world");
 //or 
@@ -91,8 +97,6 @@ copyImageToClipboard(imageUrl);
 ```
 ## Convert
 ```js
-import { formatPrice, currencyToSymbol } from "utilies";
-
 //formate the prite for payment gateway : stipe or anything else
 formatPrice(20.3);
 
@@ -104,9 +108,6 @@ currencyToSymbol("USD"); //output: $
 **rgbToHex | hexToRgb**
 
 ```js
-import { rgbToHex } from "utilies";
-import { hexToRgb } from "utilies";
-
 rgbToHex(10, 20, 100); //output: hex string: #0a1464
 
 hexToRgb("#1a098b"); //output: { red: number, green: number, blue: number } or  null
@@ -114,7 +115,6 @@ hexToRgb("#1a098b"); //output: { red: number, green: number, blue: number } or  
 query string parameters to json object
 
 ```js
-import { queryTojson } from 'utilies';
 queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
 //output: { name: 'Javascript', ext: 'js', founder: 'Brendan Eich' }
 ```
@@ -122,8 +122,6 @@ queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
 ## Cookies
 set cookie only for client side document cookies so please when use client side cookies make sure doesn't have sensitive information (only browsers supports)
 ```js
-import { setCookie , getCookie, hasCookie } from "utilies";
-
 const cookieName = "cookie-name";
 const cookieValue = "example_value";
 const cookieDays = 30;
@@ -145,18 +143,10 @@ const utils = require('utilies'); // common js import all
 utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
 
 //es6 module import syntax 
-import { toDate } from 'utilies'; // es6 name import
 toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
-
-import * as utils from "utilies"; // es6 import all
-utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
 ```
 
 ```js
-import { toDatetime } from "utilies";
-import { toDate } from "utilies";
-import { toTime } from "utilies";
-
 toDatetime("2023-03-28 20:04:10"); // output: Mar 28, 23 08:04 PM
 
 toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
@@ -176,8 +166,6 @@ toDate("2023-03-28 20:04:10", options, language);
 ## Detection
 Get system theme schema, check is mobile, is touch device etc (browsers)
 ```js
-import { is_dark , isMobile , deviceTheme, systemTheme, isTouchDevice } from "utilies";
-
 //get device theme schema
 console.log(is_dark); //output: true or false
 
@@ -193,8 +181,6 @@ console.log(isTouchDevice) //output: true or false
 ## Encryption
 Use simple encryption in javascript application browser and nodejs environment
 ````js
-import { decryptSync, encryptSync } from 'utilies';
-
 //encrypted text using secret key
 const encrypted = encryptSync('Hello world!', 'my_secret')
 console.log('Encrypted: ', encrypted)//Encrypted:  JRwzHwpDBQoGAR1+
@@ -207,8 +193,6 @@ console.log('Decrypted: ', decrypted) //Decrypted:  Hello world!
 ## Errors
 Any Errors to string/text (browsers / NodeJS supports)
 ```js
-import { errorToString, errorsToString, extractError,  extractErrors } from "utilies";
-
 //any error to string 
 errorToString(['unknow', 'fatal error']) //output: "unknow, fatal error"
 //or
@@ -222,10 +206,6 @@ extractErrors('error 1', 'error 2') //output: "error 1, error 2"
 ## Exporting
 Export to pdf, docs (Only browsers supports)
 ```js
-import { exportToPdf } from "utilies";
-import { exportToDocs } from "utilies";
-
-
 exportToDocs("filename", "Hello world");
 
 exportToPdf("filename", "Hello world", options); //options is optional
@@ -241,9 +221,6 @@ options accpeted properties
 ```
 ## Generate
 ```js
-import { random , uniqid , randomString, uuid, uuidv1, uuidv4, avatar } from "utilies";
-import { generateToken } from 'utilies';
-
 generateToken(10) // output: e.g: GkF25LJxSI
 
 //generate random number between start number to end number
@@ -271,8 +248,6 @@ uuidv4(); //output: string unique uuidv4
 ## Load
 Load/observer images, elements etc (Only browsers supports)
 ```js
-import { loadImage , lazyLoadImage , lazyLoadElm, isElementInViewport } from "utilies";
-
 //load image by url in javascript
 loadImage("image-url.png").then(function (image) {
     image.classList.add("show-image");
@@ -310,8 +285,6 @@ isViewElm(element) //output: true when the element is in view
 ## Math
 Loan interest calculate (browsers / NodeJS supports)
 ```js
-import {loanPerMonth, loanPerYear , loanPerday } from "utilies";
-
 loanPerMonth(amount, interest, duration); //output: number of loan per month
 
 loanPerYear(amount, interest, duration); //output: number of loan per month
@@ -323,8 +296,6 @@ loanPerday(amount, interest, duration); //output: number of loan per month
 **Session storage**
 working with **browser** session storage
 ```js
-import { getSession, setSession, removeSession } from "utilies";
-
 setSession("sessionName", "Hello World!");
 getSession("sessionName");// output: "Hello World!"
 
@@ -343,8 +314,6 @@ cleanSession("sessionName");
 **local storage**
 **browser** local storage
 ```js
-import { setStorage, setSession, removeSession } from "utilies";
-
 setStorage("store_name", "Hello World!");
 getStorage("store_name");// output: "Hello World!"
 
@@ -363,8 +332,6 @@ cleanStorage("store_name");
 **themeStorage**
 The theme store using built-in localStorage 
 ```js
-import { setThemeStore, getThemeStore } from "utilies";
-
 setThemeStore("dark");
 
 getThemeStore(); // output: dark
@@ -377,8 +344,6 @@ getThemeStore('app_theme'); // output: light
 ## String
 Modify a string, html string tags to valid text etc (browsers/NodeJS supports)
 ```js
-import { removeHtml, cssDurationToMillisecond } from "utilies";
-
 //remove html characters from string
 removeHtml("<h1>Hello world</h1>"); // output: Hello world
 
@@ -392,7 +357,7 @@ cssToMillisecond('1s'); // output: 1000
 ## URL
 Get Home url (only browsers support)
 ```js
-import { home_url, homeURL , base_url, baseURL , urlToText } from "utilies";
+import { url } from "utilies";
 
 //Get home url only browser support
 url() //output: http://example.com
@@ -401,8 +366,6 @@ url(['hello','world']) //output: http://example.com/hello/world
 ```
 Get text to seo url and seo url to text (browsers / NodeJS supports) 
 ```js
-import { textToSeo, toSeoUrl, seoToString , seoToText , urlToText } from "utilies";
-
 // text to seo friendly url
 textToSeo("Hello: I am javascript"); //output: hello-i-am-javascript
 //or
@@ -417,8 +380,6 @@ urlToText("hello-iam-javascript")   //output: hello i am javascript
 ```
 Add/remove slash from a url (browsers / NodeJS supports) 
 ```js
-import { textToSeo,toSeoUrl, seoToString, unSlash, unSlashR, unSlashL } from "utilies";
-
 //add slash end of the url
 addSlash("http://example.com"); //output: http://example.com/
 
@@ -445,8 +406,6 @@ unSlashR("/example.com/hello/"); //output: /example.com/hello
 ```
 **Path/URL join** (support NodeJS & Browsers by module support)
 ```js
-import { pathJoin, urlJoin } from "utilies";
-
 pathJoin('example.com', 'hello', false, [], {name: 'Saeed'}, 10) 
 //output: example.com/hello/10
 pathJoin('example.com', 'hello', false, ['new', 'task'], { name: 'Saeed' }, 10) 
@@ -465,8 +424,6 @@ queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
 ## Validation
 Validate email, phone number (browsers / NodeJS supports)
 ```js
-import { isMail, isPhoneNumber } from "utilies";
-
 isMail("yourmail@domain.com"); //ouput: true
 isMail("domain.com"); //output: false
 
