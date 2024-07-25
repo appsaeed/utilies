@@ -1,6 +1,4 @@
-import { systemTheme } from "./detection";
 import { decryptSync, encryptSync } from "./encryption";
-import { ThemeType } from "./types/themes";
 import { catchOrNull } from "./utilies";
 
 /**
@@ -43,27 +41,3 @@ export function getStorage<T>(name: string): T | null {
  * clear data from local storage
  */
 export const cleanStorage = (name: string) => localStorage.removeItem(name);
-
-/**
- * Set theme to local storage
- * @param {ThemeType} mode
- * @param {string} name
- * @returns {ThemeType}
- */
-export function setThemeStore(mode: ThemeType, name: string = "user_theme"): ThemeType {
-  localStorage.setItem(name, mode);
-  return mode;
-}
-
-/**
- * Get theme from local storage
- * @param {string} name
- * @returns {ThemeType}
- */
-export function getThemeStore(name: string = "user_theme"): ThemeType {
-  const store = localStorage.getItem(name);
-  if (store === "dark" || store === "light") {
-    return store;
-  }
-  return systemTheme;
-}
