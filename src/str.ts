@@ -4,7 +4,7 @@
  * @returns 
  */
 export function removeHtml(html: string) {
-    return html.toString().replace(/<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;|&gt;/g, "");
+    return String(html).toString().replace(/<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;|&gt;/g, "");
 }
 
 /**
@@ -30,3 +30,7 @@ export function cssDurationToMillisecond(cssDuration: string | number = "1s"): n
  * @returns {number}
  */
 export const cssToMillisecond = cssDurationToMillisecond;
+
+
+
+export const capitalize = (s: string = '') => s.charAt(0).toUpperCase() + s.slice(1)

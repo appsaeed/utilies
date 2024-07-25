@@ -38,6 +38,7 @@ export function seoToString(url: string): string {
  */
 export const urlToString = seoToString;
 export const urlToText = seoToString;
+export const slugToText = seoToString;
 
 export const beString = (str: any): string => String(str);
 
