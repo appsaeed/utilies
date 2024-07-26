@@ -14,6 +14,7 @@ export * from './navigator';
 export * from './proto';
 export * from './storage';
 export * from './str';
+export * from './theme';
 export * from './url';
 export * from './utilies';
 export * from './validation';
