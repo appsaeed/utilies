@@ -6,6 +6,7 @@ import { ThemeType } from "./types/themes";
  * @returns {boolean}
  */
 export const isDarkSchema = window.matchMedia("(prefers-color-scheme: dark)").matches;
+export const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 
 /**
@@ -17,10 +18,10 @@ export const themeSchema: ThemeType = isDarkSchema ? 'dark' : 'light';
 /**
  * Get theme from local storage
  * @param {string} name default storage name user_theme
- * @param {string} schema default system theme schema
+ * @param {ThemeType} schema default system theme schema
  * @returns {ThemeType}
  */
-export function getTheme(name: string = "user_theme", schema = themeSchema): ThemeType {
+export function getTheme(name: string = "user_theme", schema: ThemeType = themeSchema): ThemeType {
     const store = localStorage.getItem(name);
     if (store === "dark" || store === "light") {
         return store;
@@ -38,7 +39,7 @@ export const theme = getTheme()
  * Get theme from local storage
  * @returns {Boolean}
  */
-export const themeIs = (mode: ThemeType): boolean => mode === theme;
+export const themeIs = (mode: ThemeType, schema?: ThemeType): boolean => mode === (schema || theme);
 
 
 /**

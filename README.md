@@ -15,6 +15,7 @@ Jump to a specific section to help with this overview
 -   [Installation](#Installation) Easily install with and start using.
 -   [Usage](#Usage) Please look at the section before start the package.
 -   [Common](#Common) Necessary JavaScript utility functions and methods.
+-   [Theme](#Theme) Utilies theme with local storage and easily control them
 -   [Clipboard](#Clipboard) Copy text/image to clipboard function for browser
 -   [Convert](#Convert) Convert price, symbol, string, number etc.
 -   [Cookies](#Cookies)  cookies uses secure level encrypted data (only browsers)
@@ -56,6 +57,48 @@ import { yourfunctions } from 'utilies'
 import * as utilies from 'utilies'
 utilies.yourfunctions
 ```
+
+# Theme 
+
+
+**Detect device schema**
+```js
+import { themeSchema } from 'utilies'
+themeSchema // output : dark or light base on device theme schema
+```
+
+**Detect device dark schema**
+```js
+import { isDarkSchema } from 'utilies'
+isDarkSchema // output : true or false base on device theme schema
+// or use isDark 
+```
+
+**Set theme to local storage**
+```js
+import { setTheme } from 'utilies'
+
+setTheme('dark') // save the dark theme to local storage
+setTheme('light')
+```
+**Get Theme from saved storage**
+```js
+import { getTheme , theme } from 'utilies'
+
+getTheme() // your saved theme dark or light or system
+getTheme('my_theme') // with storage key name (optional)
+theme // output: dark or light > work save as getTheme if don't have storage key name
+```
+**Get theme condiction**
+```js
+import { themeIs , theme } from 'utilies'
+
+themeIs('dark',theme) // true 
+themeIs('light', theme) // false 
+```
+
+
+
 
 # Common
 Use try-catch in single line 
