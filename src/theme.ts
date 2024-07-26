@@ -23,6 +23,7 @@ export const themeSchema: ThemeType = isDarkSchema ? 'dark' : 'light';
  */
 export function getTheme(name: string = "user_theme", schema: ThemeType = themeSchema): ThemeType {
     const store = localStorage.getItem(name);
+    console.log('storage: ', store)
     if (store === "dark" || store === "light") {
         return store;
     }
@@ -33,13 +34,13 @@ export function getTheme(name: string = "user_theme", schema: ThemeType = themeS
  * Get theme from local storage
  * @returns {ThemeType}
  */
-export const theme = getTheme()
+export const theme = getTheme();
 
 /**
  * Get theme from local storage
  * @returns {Boolean}
  */
-export const themeIs = (mode: ThemeType, schema?: ThemeType): boolean => mode === (schema || theme);
+export const themeIs = (mode: ThemeType, schema?: ThemeType): boolean => mode === (schema || getTheme());
 
 
 /**

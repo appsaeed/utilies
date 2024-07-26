@@ -1,10 +1,3 @@
-Object.defineProperty(global, "localStorage", {
-    value: {
-        getItem: jest.fn().mockReturnValue("hello world!")
-    },
-    writable: true
-});
-
 Object.defineProperty(global, 'location', {
     value: {
         host: 'example.com',
@@ -13,3 +6,20 @@ Object.defineProperty(global, 'location', {
     },
     writable: true, // Optional: Allows tests to modify mocked location (use with caution)
 });
+
+
+// jest.setup.js
+Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: jest.fn().mockImplementation(query => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // Deprecated
+        removeListener: jest.fn(), // Deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+    })),
+});
+
