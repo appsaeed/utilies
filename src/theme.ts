@@ -10,6 +10,18 @@ export const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 
 /**
+ * Set theme to local storage
+ * @param {ThemeType} mode
+ * @param {string} name default storage name user_theme
+ * @returns {ThemeType}
+ */
+export function setTheme(mode: ThemeType, name: string = "user_theme"): ThemeType {
+    localStorage.setItem(name, mode);
+    return mode;
+}
+
+
+/**
  * detect device schema
  * @returns {boolean}
  */
@@ -23,7 +35,6 @@ export const themeSchema: ThemeType = isDarkSchema ? 'dark' : 'light';
  */
 export function getTheme(name: string = "user_theme", schema: ThemeType = themeSchema): ThemeType {
     const store = localStorage.getItem(name);
-    console.log('storage: ', store)
     if (store === "dark" || store === "light") {
         return store;
     }
@@ -42,14 +53,3 @@ export const theme = getTheme();
  */
 export const themeIs = (mode: ThemeType, schema?: ThemeType): boolean => mode === (schema || getTheme());
 
-
-/**
- * Set theme to local storage
- * @param {ThemeType} mode
- * @param {string} name default storage name user_theme
- * @returns {ThemeType}
- */
-export function setTheme(mode: ThemeType, name: string = "user_theme"): ThemeType {
-    localStorage.setItem(name, mode);
-    return mode;
-}
