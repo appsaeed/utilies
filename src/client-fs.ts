@@ -1,4 +1,5 @@
 import { FileMinetype } from "./types/files";
+import { isClient } from "./utilies";
 
 export type FileOptions = {
   name: string;
@@ -24,7 +25,7 @@ export function downloadFile(options: FileOptions, callback?: Callback): void {
     anchor.href = link;
     anchor.download = filename;
     document.body.appendChild(anchor);
-    window.requestAnimationFrame(function () {
+    isClient && globalThis.requestAnimationFrame(function () {
       URL.revokeObjectURL(link);
       var event = new MouseEvent("click");
       anchor.dispatchEvent(event);

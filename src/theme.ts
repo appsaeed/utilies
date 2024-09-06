@@ -1,12 +1,13 @@
 import { ThemeType } from "./types/themes";
+import { isClient } from "./utilies";
 
 
 /**
  * detect device dark schema
  * @returns {boolean}
  */
-export const isDarkSchema = window.matchMedia("(prefers-color-scheme: dark)").matches;
-export const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+export const isDarkSchema = isClient ? globalThis.matchMedia("(prefers-color-scheme: dark)").matches : false;
+export const isDark = isDarkSchema;
 
 
 /**

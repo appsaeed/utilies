@@ -1,3 +1,4 @@
+export const isClient = typeof window !== 'undefined';
 /**
  * Display items with pretty formatting e.g todo, todos , not found
  */
@@ -19,7 +20,7 @@ export function urlBase64ToUint8Array(base64String: string | any[]) {
         .replace(/-/g, "+")
         .replace(/_/g, "/");
 
-    const rawData = window.atob(base64);
+    const rawData = globalThis.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
 
     for (let i = 0; i < rawData.length; ++i) {

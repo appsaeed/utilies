@@ -96,13 +96,13 @@ export const urlJoin = pathJoin;
  * Get home url and aslo add path 
  */
 export function url(...paths: any) {
-    let window_url = null;
+    let base_url = null;
     try {
-        window_url = location.protocol + '//' + location.host
+        base_url = (new URL('', globalThis?.location.origin))
     } catch (_err) {
-        window_url = null;
+        base_url = null;
     }
-    return pathJoin(window_url, ...paths);
+    return pathJoin(base_url, ...paths);
 }
 
 /**

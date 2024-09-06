@@ -9,7 +9,7 @@ export class Crypte {
     async generateKeyFromSecret(): Promise<CryptoKey> {
         try {
             const secretBuffer = new TextEncoder().encode(this.#secret);
-            return await window.crypto.subtle.importKey(
+            return await globalThis.crypto.subtle.importKey(
                 "raw",
                 secretBuffer,
                 { name: "PBKDF2" },
@@ -25,7 +25,7 @@ export class Crypte {
     async deriveKeyFromSecret(): Promise<CryptoKey> {
         try {
             const keyMaterial = await this.generateKeyFromSecret();
-            return await window.crypto.subtle.deriveKey(
+            return await globalThis.crypto.subtle.deriveKey(
                 {
                     "name": "PBKDF2",
                     "salt": new Uint8Array(0), // No salt used
@@ -47,7 +47,7 @@ export class Crypte {
         try {
             const encryptionKey = await this.deriveKeyFromSecret();
             const encodedData = new TextEncoder().encode(data);
-            const encryptedData = await window.crypto.subtle.encrypt({ name: "AES-GCM", iv: new Uint8Array(12) }, encryptionKey, encodedData);
+            const encryptedData = await global.crypto.subtle.encrypt({ name: "AES-GCM", iv: new Uint8Array(12) }, encryptionKey, encodedData);
             // Convert the encrypted data to a base64 string for safe representation
             const encryptedString = Array.from(new Uint8Array(encryptedData)).map(byte => String.fromCharCode(byte)).join('');
             return encodeURIComponent(btoa(encryptedString)); // Encode to ensure it's a valid string 

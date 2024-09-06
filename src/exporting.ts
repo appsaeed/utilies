@@ -17,12 +17,12 @@ export default function exportToPdf(
   const height = options?.height || 650;
   const top = options?.top || 100;
   const left = options?.left || 150;
-  const mywindow = window.open(
+  const mywin = globalThis.open(
     "",
     "PRINT",
     `height=${height},width=${width},top=,${top}left=${left}`
   );
-  mywindow?.document.write(`
+  mywin?.document.write(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -35,10 +35,10 @@ export default function exportToPdf(
         ${content}
     </body>
     </html>`);
-  mywindow?.focus(); // necessary for IE >= 10*/
-  mywindow?.print();
-  // mywindow.close();
-  mywindow?.document.close(); // necessary for IE >= 10
+  mywin?.focus(); // necessary for IE >= 10*/
+  mywin?.print();
+  // mywin.close();
+  mywin?.document.close(); // necessary for IE >= 10
   return true;
 }
 
