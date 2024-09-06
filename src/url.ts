@@ -90,20 +90,8 @@ export function pathJoin(...paths: any[]): string {
         .join("/").toString();
 }
 export const urlJoin = pathJoin;
+export const ujoin = pathJoin;
 
-
-/**
- * Get home url and aslo add path 
- */
-export function url(...paths: any) {
-    let base_url = null;
-    try {
-        base_url = (new URL('', globalThis?.location.origin))
-    } catch (_err) {
-        base_url = null;
-    }
-    return pathJoin(base_url, ...paths);
-}
 
 /**
  * Query string to javascript object

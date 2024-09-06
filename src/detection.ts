@@ -1,13 +1,11 @@
-import { isClient } from "./utilies";
-
-
+"use client";
 
 /**
  * Detect if it is a mobile device
  */
-export const isMobile = isClient ? /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) : false;
+export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 /**
  * Detect if it is a touch device
  */
-export const isTouchDevice = isClient ? (navigator.maxTouchPoints || 'ontouchstart' in document.documentElement) : false;
+export const isTouchDevice = (navigator.maxTouchPoints || 'ontouchstart' in document.documentElement);

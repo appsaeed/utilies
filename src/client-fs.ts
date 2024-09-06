@@ -1,3 +1,4 @@
+"use client";
 import { FileMinetype } from "./types/files";
 import { isClient } from "./utilies";
 
@@ -25,7 +26,7 @@ export function downloadFile(options: FileOptions, callback?: Callback): void {
     anchor.href = link;
     anchor.download = filename;
     document.body.appendChild(anchor);
-    isClient && globalThis.requestAnimationFrame(function () {
+    isClient && window.requestAnimationFrame(function () {
       URL.revokeObjectURL(link);
       var event = new MouseEvent("click");
       anchor.dispatchEvent(event);

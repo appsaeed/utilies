@@ -1,12 +1,12 @@
+"use client";
 import { ThemeType } from "./types/themes";
-import { isClient } from "./utilies";
 
 
 /**
  * detect device dark schema
  * @returns {boolean}
  */
-export const isDarkSchema = isClient ? globalThis.matchMedia("(prefers-color-scheme: dark)").matches : false;
+export const isDarkSchema = window.matchMedia("(prefers-color-scheme: dark)").matches;
 export const isDark = isDarkSchema;
 
 
@@ -17,7 +17,7 @@ export const isDark = isDarkSchema;
  * @returns {ThemeType}
  */
 export function setTheme(mode: ThemeType, name: string = "user_theme"): ThemeType {
-    localStorage.setItem(name, mode);
+    window.localStorage.setItem(name, mode);
     return mode;
 }
 
@@ -35,7 +35,7 @@ export const themeSchema: ThemeType = isDarkSchema ? 'dark' : 'light';
  * @returns {ThemeType}
  */
 export function getTheme(name: string = "user_theme", schema: ThemeType = themeSchema): ThemeType {
-    const store = localStorage.getItem(name);
+    const store = window.localStorage.getItem(name);
     if (store === "dark" || store === "light") {
         return store;
     }

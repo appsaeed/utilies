@@ -1,3 +1,4 @@
+"use client";
 /**
  * Copy image to clipboard by image url
  * @param {string} url

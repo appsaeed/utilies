@@ -1,3 +1,4 @@
+"use client";
 import { decryptSync, encryptSync } from "./encryption";
 import { catchOrNull } from "./utilies.js";
 

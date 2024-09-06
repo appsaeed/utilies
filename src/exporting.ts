@@ -1,3 +1,4 @@
+"use client";
 type PDFoptions = {
   width?: number;
   height?: number;
@@ -17,7 +18,7 @@ export default function exportToPdf(
   const height = options?.height || 650;
   const top = options?.top || 100;
   const left = options?.left || 150;
-  const mywin = globalThis.open(
+  const mywin = window.open(
     "",
     "PRINT",
     `height=${height},width=${width},top=,${top}left=${left}`
