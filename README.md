@@ -331,7 +331,17 @@ exportToPdf("filename", "Hello world", options);
 ```
 
 
-## Generate
+## Generate  
+
+Generate random values, unique IDs, and more for various purposes.  
+
+- **`generateToken`** – Generates a random alphanumeric token of the specified length (e.g., `GkF25LJxSI`).  
+- **`random`** – Generates a random number between a specified range.  
+- **`uniqid`** – Generates a unique ID string, with optional length and prefix.  
+- **`randomString`** – Generates a random string, similar to `uniqid` but without dashes.  
+- **`avatar`** – Generates a URL for an avatar image based on a given name.  
+- **`uuid`, `uuidv1`, `uuidv4`** – Generates a unique UUID string, with options for different versions.  
+
 ```js
 generateToken(10) // output: e.g., GkF25LJxSI
 
