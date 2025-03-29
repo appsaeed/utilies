@@ -18,7 +18,7 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 - [Errors](#errors) - Convert errors to strings for display
 - [Exporting](#exporting) - Export PDF, document files with client-side JavaScript
 - [Generate](#generate) - Generate random strings, numbers, UUIDs, and more
-- [Load and Observe](#load-and-observe) - Load DOM elements, images, and more (browsers only)
+- [Load and Observe](#load-and-observe) - Load DOM elements, images, and more (browsers only).
 - [Session & Storage](#browser-session--storage) - Browser session and Local storage.
 - [String](#string-manipulation) - Modify strings and remove HTML
 - [URL](#url) - Convenient URL/string modification utilities
