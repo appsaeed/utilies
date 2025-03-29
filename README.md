@@ -7,8 +7,8 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 ## Table of Contents
 <!-- START -->
 - [Installation](#installation) - Easily install and start using
-- [Error handling](#error-handling) Simplify error handling utility functions. 
-- [Theme](#theme) - Utilities for theme management with local storage
+- [Error handling](#error-handling) - Simplify error handling utility functions. 
+- [Theme](#theme-detection--management) - Theme detection and management with local storage.
 - [Clipboard](#clipboard) - Copy text/image to clipboard functions for browsers
 - [Convert](#convert) - Convert price, symbol, string, number, etc.
 - [Cookies](#cookies) - Cookie utilities with secure encrypted data (browsers only)
