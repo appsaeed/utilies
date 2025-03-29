@@ -12,6 +12,7 @@ export function dateTime(date: string, options?: Intl.DateTimeFormatOptions, loc
 			hour12: true,
 		};
 		return new Date(date).toLocaleString(locales, opt);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 		return "";
 	}
@@ -33,6 +34,7 @@ export function date(date: string, options?: Intl.DateTimeFormatOptions, locales
 			hour12: true,
 		};
 		return new Date(date).toLocaleDateString(locales, opt);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 		return "";
 	}
@@ -52,6 +54,7 @@ export function time(date: string, options?: Intl.DateTimeFormatOptions, locales
 			hour12: true,
 		};
 		return new Date(date).toLocaleTimeString(locales, opt);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {
 		return "";
 	}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function errorToString(error: any): string {
 	try {
 		if (Array.isArray(error)) {

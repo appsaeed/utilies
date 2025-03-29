@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export class Crypto {
 	#secret: string;
 
@@ -9,8 +10,8 @@ export class Crypto {
 		try {
 			const secretBuffer = new TextEncoder().encode(this.#secret);
 			return await globalThis.crypto.subtle.importKey("raw", secretBuffer, { name: "PBKDF2" }, false, ["deriveBits", "deriveKey"]);
-		} catch (error) {
-			throw error;
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 
@@ -30,8 +31,8 @@ export class Crypto {
 				true,
 				["encrypt", "decrypt"],
 			);
-		} catch (error) {
-			throw error;
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 
@@ -46,8 +47,8 @@ export class Crypto {
 				.map((byte) => String.fromCharCode(byte))
 				.join("");
 			return encodeURIComponent(btoa(encryptedString)); // Encode to ensure it's a valid string
-		} catch (error) {
-			throw error;
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 
@@ -69,8 +70,8 @@ export class Crypto {
 			);
 
 			return new TextDecoder().decode(decryptedData);
-		} catch (error) {
-			throw error;
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 }
@@ -125,8 +126,8 @@ export class XorCrypto {
 				result += String.fromCharCode(decodedData.charCodeAt(i) ^ generatedKey.charCodeAt(i % secret.length));
 			}
 			return result;
-		} catch (error) {
-			throw new Error("Error decrypting: cannot decrypt, please make sure you have correct key and encrypted text");
+		} catch (error: any) {
+			throw new Error(error);
 		}
 	}
 }

@@ -2,50 +2,50 @@ import { RangeOf } from "./types/number";
 
 /**
  * generate random number between start and end using math.random
- * @param {number} start 
- * @param {number} end 
+ * @param {number} start
+ * @param {number} end
  * @returns {number}
  */
 export function random(start: number, end: number): number {
-    return Math.floor((Math.random() * end) + start)
+	return Math.floor(Math.random() * end + start);
 }
 
 /**
  * Generate uniqid by crypto
- * @param {string} prefix 
+ * @param {string} prefix
  * @returns {string}
  */
-export const uniqid = (prefix: string = ''): string => prefix + crypto.randomUUID();
+export const uniqid = (prefix: string = ""): string => prefix + crypto.randomUUID();
 
 /**
  * Generate random string
  * @param {number} len length of the string
- * @returns 
+ * @returns
  */
-export function randomString(len: number = 10, prefix = ''): string {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    const randomArray = new Uint8Array(len);
-    crypto.getRandomValues(randomArray);
-    randomArray.forEach((number) => {
-        result += chars[number % chars.length];
-    });
-    return `${prefix}${result}`;
+export function randomString(len: number = 10, prefix = ""): string {
+	const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	let result = "";
+	const randomArray = new Uint8Array(len);
+	crypto.getRandomValues(randomArray);
+	randomArray.forEach((number) => {
+		result += chars[number % chars.length];
+	});
+	return `${prefix}${result}`;
 }
 
 /**
  * genarate random uuid
  */
 export function uuid(_length: number | null = null, prefix: string | null = null): string {
-    const _Length: number = _length ? _length : 36;
-    const _prefix: string = prefix ? prefix : "";
-    const maps = "abcdefghigklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const made = [...Array(_Length)]
-        .map(() => maps.substr(Math.floor(Math.random() * maps.length) + 0, 1))
-        .join("")
-        .toString();
+	const _Length: number = _length ? _length : 36;
+	const _prefix: string = prefix ? prefix : "";
+	const maps = "abcdefghigklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	const made = [...Array(_Length)]
+		.map(() => maps.substr(Math.floor(Math.random() * maps.length) + 0, 1))
+		.join("")
+		.toString();
 
-    return _prefix + made;
+	return _prefix + made;
 }
 
 /**
@@ -53,32 +53,31 @@ export function uuid(_length: number | null = null, prefix: string | null = null
  * @returns
  */
 export const uuidv1 = (_length: RangeOf<0, 36> = 36, prefix = ""): string => {
-    const _Length = _length;
-    const uuid = Date.now().toString(_Length) + Math.random().toString(_Length).substring(2);
-    return `${prefix}${uuid}`;
+	const _Length = _length;
+	const uuid = Date.now().toString(_Length) + Math.random().toString(_Length).substring(2);
+	return `${prefix}${uuid}`;
 };
 
 /**
  * generate custom uuid with v4
  */
 export function uuidv4() {
-    var arr = new Uint8Array(16);
-    crypto.getRandomValues(arr);
-    arr[6] = (arr[6] & 0x0f) | 0x40; // set version number to 4
-    arr[8] = (arr[8] & 0x3f) | 0x80; // set variant number to RFC4122
+	const arr = new Uint8Array(16);
+	crypto.getRandomValues(arr);
+	arr[6] = (arr[6] & 0x0f) | 0x40; // set version number to 4
+	arr[8] = (arr[8] & 0x3f) | 0x80; // set variant number to RFC4122
 
-    var hexStringArray = [];
-    for (var i = 0; i < arr.length; i++) {
-        hexStringArray.push(arr[i].toString(16));
-    }
+	const hexStringArray = [];
+	for (let i = 0; i < arr.length; i++) {
+		hexStringArray.push(arr[i].toString(16));
+	}
 
-    var uuid = hexStringArray.join("").replace(/^.{8}(.{4}).{3}(.{3}).{12}$/, function (_match, p1, p2) {
-        return p1 + '-' + p2 + '-4' + Date.now() % 1000000000;
-    });
+	const uuid = hexStringArray.join("").replace(/^.{8}(.{4}).{3}(.{3}).{12}$/, function (_match, p1, p2) {
+		return p1 + "-" + p2 + "-4" + (Date.now() % 1000000000);
+	});
 
-    return uuid;
+	return uuid;
 }
-
 
 /**
  * Get avatar placeholder image by shorts latters
@@ -86,20 +85,19 @@ export function uuidv4() {
  */
 export const avatar = (n = "s") => `https://ui-avatars.com/api/?name=${n}`;
 
-
 /**
  * Generate token by define length
  * @param length length of characters to generate
- * @returns 
+ * @returns
  */
 export function generateToken(length: number = 30): string {
-    const token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    let a: string[] = token.split("");
-    let b: number | string[] = [];
-    let rand: number;
-    for (let i = 0; i < length; i++) {
-        rand = Number((Math.random() * (a.length - 1)).toFixed(0));
-        b[i] = a[rand];
-    }
-    return b.join("");
+	const token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	const a: string[] = token.split("");
+	const b: number | string[] = [];
+	let rand: number;
+	for (let i = 0; i < length; i++) {
+		rand = Number((Math.random() * (a.length - 1)).toFixed(0));
+		b[i] = a[rand];
+	}
+	return b.join("");
 }

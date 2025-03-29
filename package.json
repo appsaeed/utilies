@@ -1,7 +1,7 @@
 {
     "name": "utilies",
     "version": "1.32.0",
-    "description": "JavaScript utility helpers designed to enhance developer experience, increase productivity, and optimize performance. Compatible with both browsers (Node.js with limited support).",
+    "description": "JJavaScript utilities for faster development and productivity.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
@@ -21,8 +21,7 @@
         "javascript utilities",
         "utils",
         "appsaeed",
-        "javascript theme",
-        "js themeing"
+        "theme storage"
     ],
     "author": "appsaeed",
     "license": "MIT",
@@ -48,9 +47,13 @@
         }
     },
     "devDependencies": {
+        "@eslint/js": "^9.23.0",
         "@types/jest": "^29.5.12",
+        "eslint": "^9.23.0",
+        "globals": "^16.0.0",
         "jest": "^29.7.0",
         "jest-environment-jsdom": "^29.7.0",
-        "ts-jest": "^29.1.2"
+        "ts-jest": "^29.1.2",
+        "typescript-eslint": "^8.28.0"
     }
 }
