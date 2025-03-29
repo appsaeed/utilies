@@ -7,8 +7,7 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 ## Table of Contents
 <!-- START -->
 - [Installation](#installation) - Easily install and start using
-- [Usage](#usage) - Please review this section before using the package
-- [Common](#common) - Essential JavaScript utility functions and methods
+- [Error handling](#error-handling) Simplify error handling utility functions. 
 - [Theme](#theme) - Utilities for theme management with local storage
 - [Clipboard](#clipboard) - Copy text/image to clipboard functions for browsers
 - [Convert](#convert) - Convert price, symbol, string, number, etc.
@@ -30,25 +29,10 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 <!-- FINISHED -->
 
 ## Installation
+
 Install with [npm](https://www.npmjs.com/)
 ```sh
-npm i utilies
-```
-Or install with [yarn](https://www.npmjs.com/package/yarn)
-```sh
-yarn add utilies
-```
-Or install with [pnpm](https://www.npmjs.com/package/pnpm)
-```sh
-pnpm install utilies
-```
-
-## Usage
-```js
-import { yourFunction } from 'utilies'
-// or 
-import * as utilies from 'utilies'
-utilies.yourFunction
+npm install utilies
 ```
 
 ## Theme
@@ -91,8 +75,12 @@ themeIs('dark', theme) // true
 themeIs('light', theme) // false 
 ```
 
-## Common
-Use try-catch in a single line 
+## Error Handling  
+
+Simplify error handling and conversion with these utility functions.  
+
+**`catchOrNull` / `catchOR`** – Wraps a function in a `try-catch` block and prevents exceptions from being thrown. Returns `null` or a custom fallback value if an error occurs.  
+
 ```js
 import { catchOrNull, catchOR } from 'utilies';
 
@@ -114,6 +102,21 @@ catchOrNull(helloWorld, function(error){
     console.log('Custom: ', error)
 });
 ```
+
+**`errorToString` / `extractError`** – Converts any error (objects, arrays, or strings) into a readable string.  
+**`errorsToString` / `extractErrors`** – Merges multiple errors into a single string for better readability.
+
+```js
+// Convert any error to string 
+errorToString(['unknown', 'fatal error']) // output: "unknown, fatal error"
+// or
+extractError(['unknown', 'fatal error']) // output: "unknown, fatal error"
+
+// Extract multiple errors to a single string
+errorsToString('error 1', 'error 2') // output: "error 1, error 2"
+// or 
+extractErrors('error 1', 'error 2') // output: "error 1, error 2"
+```  
 
 ## Clipboard
 Copy text/image to clipboard using window navigator [clipboard](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard) or fallback to document textarea.
@@ -227,19 +230,7 @@ const decrypted = decryptSync('JRwzHwpDBQoGAR1+', 'my_secret')
 console.log('Decrypted: ', decrypted) // Decrypted: Hello world!
 ```
 
-## Errors
-Convert any errors to string/text (browsers / Node.js support)
-```js
-// Convert any error to string 
-errorToString(['unknown', 'fatal error']) // output: "unknown, fatal error"
-// or
-extractError(['unknown', 'fatal error']) // output: "unknown, fatal error"
 
-// Extract multiple errors to a single string
-errorsToString('error 1', 'error 2') // output: "error 1, error 2"
-// or 
-extractErrors('error 1', 'error 2') // output: "error 1, error 2"
-```
 
 ## Exporting
 Export to PDF, DOCS (browsers only)
