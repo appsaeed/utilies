@@ -35,22 +35,27 @@ Install with [npm](https://www.npmjs.com/)
 npm install utilies
 ```
 
-## Theme
+## Theme Detection & Management  
 
-**Detect device schema**
+Easily detect, retrieve, and manage theme preferences in your application.
+
+
+**`themeSchema`** – Detects the device's current theme (`dark` or `light`).
 ```js
 import { themeSchema } from 'utilies'
 themeSchema // output: dark or light based on device theme schema
-```
+```  
 
-**Detect device dark schema**
+**`isDarkSchema` / `isDark`** – Checks if the device is using a dark theme (`true` or `false`).
 ```js
-import { isDarkSchema } from 'utilies'
+import { isDarkSchema, isDark } from 'utilies'
 isDarkSchema // output: true or false based on device theme schema
-// or use isDark 
-```
+//or
+isDark // output: boolean
+```  
 
-**Set theme to local storage**
+
+**`setTheme`** – Saves a preferred theme (`dark` or `light`) to local storage.
 ```js
 import { setTheme } from 'utilies'
 
@@ -58,22 +63,26 @@ setTheme('dark') // save the dark theme to local storage
 setTheme('light')
 ```
 
-**Get theme from saved storage**
+**`getTheme` / `theme`** – Retrieves the saved theme from local storage; defaults to system preference if not set.
 ```js
 import { getTheme, theme } from 'utilies'
 
 getTheme() // your saved theme: dark, light, or system
 getTheme('my_theme') // with storage key name (optional)
 theme // output: dark or light - works the same as getTheme if no storage key is provided
-```
+```  
 
-**Check theme condition**
+**`themeIs`** – Checks if the current theme matches a specific value (`dark` or `light`).  
 ```js
 import { themeIs, theme } from 'utilies'
 
 themeIs('dark', theme) // true 
 themeIs('light', theme) // false 
 ```
+
+
+
+
 
 ## Error Handling  
 
