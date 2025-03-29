@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
- * any string to SEO url
+ * Get seo url from a string text
+ * @deprecated
  */
 export function textToSeo(url: string): string {
 	return url
@@ -23,8 +24,7 @@ export const toSeoURL = textToSeo;
  * @returns
  */
 export function seoToString(url: string): string {
-	return url
-		.toString() // Convert to string
+	return String(url) // Convert to string
 		.replace("-", " ") // Change whitespace to dashes
 		.toLowerCase() // Change to lowercase
 		.replace("-and-", " and ") // Replace ampersand
@@ -93,7 +93,8 @@ export function pathJoin(...paths: any[]): string {
 		.toString();
 }
 export const urlJoin = pathJoin;
-export const ujoin = pathJoin;
+export const path_join = pathJoin;
+export const url_join = pathJoin;
 
 /**
  * Query string to javascript object
@@ -112,5 +113,43 @@ export function queryTojson(query: string): object | null {
 		return obj;
 	} else {
 		return null;
+	}
+}
+
+export function url(...args: (string | Record<string, any>)[]) {
+	// Extract paths and params dynamically
+	const paths = args.filter((arg) => typeof arg === "string" || Array.isArray(arg)) as string[];
+	const params = args.find((arg) => arg && typeof arg === "object" && !Array.isArray(arg)) as Record<string, any> | undefined;
+
+	try {
+		// Combine the paths correctly
+		const url = new URL(pathJoin(...paths), window.location.href);
+
+		// Append query parameters if any
+		if (params) {
+			Object.entries(params).forEach(([key, value]) => {
+				// If value is null or undefined, we remove the parameter
+				if (value == null) {
+					url.searchParams.delete(key);
+				} else if (Array.isArray(value)) {
+					// If value is an array, append all items
+					value.forEach((v) => url.searchParams.append(key, v.toString()));
+				} else {
+					url.searchParams.set(key, value.toString());
+				}
+			});
+		}
+
+		return url.href; // Return the complete URL with parameters
+	} catch {
+		// Fallback if URL creation fails
+		const searchParams = new URLSearchParams();
+		if (params) {
+			Object.entries(params).forEach(([key, value]) => {
+				searchParams.append(key, value.toString());
+			});
+		}
+		// Combine paths and query string
+		return "/" + pathJoin(...paths) + (params ? `?${searchParams.toString()}` : "");
 	}
 }
