@@ -1,8 +1,15 @@
-## Introduction
+# Utilies
 
-JavaScript utility helpers designed to enhance developer experience, increase productivity, and optimize performance. Compatible with both browsers (Node.js with limited support).
+## Introduction
+JavaScript utility helpers designed to enhance developer experience, increase productivity, and optimize performance. Compatible with both browsers and Node.js (with limited support).
 
 > Fast, generic JavaScript utility helpers to boost your project productivity and performance
+
+## Other Packages
+Discover our best NPM Packages and Vite Plugins that offer user-friendly tools to boost performance and simplify tasks in your Vite-based web development. From streamlining workflows to adding exciting features, find everything you need to take your projects to the next level.
+<br>
+- [vite-svg](https://github.com/appsaeed/vite-svg) - Vite SVG plugin: effortless SVG import with support for various formats (JSON, raw string, object, etc.).
+- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) - This plugin helps create a sitemap in your Vite project.
 
 ## Table of Contents
 <!-- START -->
@@ -25,6 +32,7 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 - [String](#string) - Modify strings and remove HTML
 - [URL](#url) - Convenient URL/string modification utilities
 - [Validation](#validation) - Client-side validation for emails, numbers, forms, etc.
+- [Author](#author) - Package author details and GitHub page
 - [Developers](#developers) - Repository maintenance and command scripts
 - [License](#license) - MIT License
 <!-- FINISHED -->
@@ -469,12 +477,12 @@ isPhoneNumber("abc10832749"); // output: false
 isPhoneNumber("10986499204"); // output: true
 ```
 
-## Other Packages
+## Author
+**Saeed Web Developer**
 
-Discover our best NPM Packages and Vite Plugins that offer user-friendly tools to boost performance and simplify tasks in your Vite-based web development. From streamlining workflows to adding exciting features, find everything you need to take your projects to the next level.
-<br>
-- [vite-svg](https://github.com/appsaeed/vite-svg) - Vite SVG plugin: effortless SVG import with support for various formats (JSON, raw string, object, etc.).
-- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) - This plugin helps create a sitemap in your Vite project.
+- [Website](https://appsaeed.github.io)
+- [LinkedIn](https://www.linkedin.com/in/appsaeed)
+- [Email](mailto:appsaeed7@gmail.com)
 
 ## Developers
 ```sh
@@ -486,6 +494,6 @@ npm run build # test and compile TypeScript
 
 ## License
 
-Copyright © 2025 [appsaeed](https://appsaeed.github.io)
+Copyright © 2023 [appsaeed](https://appsaeed.github.io)
 
 [MIT](LICENSE)
