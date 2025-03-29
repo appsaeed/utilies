@@ -242,8 +242,16 @@ time("2023-03-28 20:04:10", options, language);
 date("2023-03-28 20:04:10", options, language);
 ```
 
-## Detection
-Get system theme schema, check if mobile, check if touch device, etc. (browsers only)
+
+## Detection  
+
+Detect various system and device characteristics for better user experience.  
+
+- **`is_dark`** – Checks if the device is using a dark theme (`true` or `false`).  
+- **`deviceTheme`** – Retrieves the current theme of the device (`dark` or `light`).  
+- **`systemTheme`** – Retrieves the system theme preference (`dark` or `light`).  
+- **`isMobile`** – Detects if the device is a mobile device (`true` or `false`).  
+- **`isTouchDevice`** – Detects if the device supports touch input (`true` or `false`).  
 ```js
 // Get device theme schema
 console.log(is_dark); // output: true or false
@@ -258,9 +266,16 @@ console.log(isMobile) // output: true or false
 console.log(isTouchDevice) // output: true or false
 ```
 
-## Encryption
-Use simple encryption in JavaScript applications for both browser and Node.js environments
+
+## Encryption  
+
+Easily encrypt and decrypt text in JavaScript applications for both browser and Node.js environments.  
+
+- **`encryptSync`** – Encrypts a given text using a secret key.  
+- **`decryptSync`** – Decrypts encrypted text using the same secret key.  
 ```js
+import { encryptSync, decryptSync } from 'utilies';
+
 // Encrypt text using secret key
 const encrypted = encryptSync('Hello world!', 'my_secret')
 console.log('Encrypted: ', encrypted) // Encrypted: JRwzHwpDBQoGAR1+
@@ -268,6 +283,24 @@ console.log('Encrypted: ', encrypted) // Encrypted: JRwzHwpDBQoGAR1+
 // Decrypt text using secret key and encrypted text
 const decrypted = decryptSync('JRwzHwpDBQoGAR1+', 'my_secret')
 console.log('Decrypted: ', decrypted) // Decrypted: Hello world!
+```
+#### Advanced Encryption   
+
+Advanced Encryption JavaScript's built-in `crypto` for secure encryption and decryption.  
+
+- **`encrypt`** – Asynchronously encrypts a given text using a secret key.  
+- **`decrypt`** – Asynchronously decrypts encrypted text using the same secret key.
+```js
+import { encrypt, decrypt } from 'utilies';
+
+async function main(){
+
+    const encrypted = await encrypt('Hello world', 'my-secret');
+
+    const data = await decrypt(encrypted, 'my-secret')
+
+    console.log(data) //output: Hello world
+}
 ```
 
 
