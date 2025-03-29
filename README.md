@@ -305,22 +305,31 @@ async function main(){
 
 
 
-## Exporting
-Export to PDF, DOCS (browsers only)
-```js
-exportToDocs("filename", "Hello world");
+## Exporting  
 
-exportToPdf("filename", "Hello world", options); // options is optional
-/*
-options accepted properties:
-{
+Export content to PDF or DOC formats directly from the browser.  
+
+- **`exportToDocs`** – Exports text content to a DOC file.  
+- **`exportToPdf`** – Exports text content to a PDF with optional configurable.
+```js
+import { exportToDocs } from 'utilies';
+
+exportToDocs('filename', 'some content or html string');
+
+exportToPdf("filename", "Hello world");
+
+//with availble options
+const options = {
     width: 800,
     height: 660,
     top: 100,
     left: 100,
 }
-*/
+
+exportToPdf("filename", "Hello world", options);
+
 ```
+
 
 ## Generate
 ```js
