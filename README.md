@@ -9,9 +9,9 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 - [Installation](#installation) - Easily install and start using
 - [Error handling](#error-handling) - Simplify error handling utility functions. 
 - [Theme](#theme-detection--management) - Theme detection and management with local storage.
-- [Clipboard](#clipboard) - Copy text/image to clipboard functions for browsers
-- [Convert](#convert) - Convert price, symbol, string, number, etc.
-- [Cookies](#cookies) - Cookie utilities with secure encrypted data (browsers only)
+- [Clipboard helpers](#clipboard-helpers) - Copy text/image to clipboard.
+- [Conversion](#conversion) - Easily convert various data formats and values.
+- [Cookie](#cookie) - Manage browser Cookie with secure encrypted data.
 - [Datetime](#datetime) - Convenient functions to convert date and time
 - [Detection](#detection) - Detect device theme scheme and browser information
 - [Encryption](#encryption) - Simple XOR and window crypto encryption with secret keys
@@ -143,38 +143,58 @@ copyToClipboard("hello world");
 const imageUrl = "image/examples/image.png";
 copyImageToClipboard(imageUrl);
 ```
-For more details, refer to the [Clipboard API documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard).  
+For more details, refer to the [Clipboard API documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard).
 
-## Convert
+
+
+
+
+
+## Conversion  
+
+A set of functions to easily convert various data formats and values.  
+
+**`currencyToSymbol`** – Converts a currency code (e.g., `USD`) into its corresponding symbol (e.g., `$`).
 ```js
-// Format the price for payment gateways like Stripe
-formatPrice(20.3);
-
-// Currency to symbol
+import { currencyToSymbol } from 'utilies'
 currencyToSymbol("USD"); // output: $
-```
-
-[Our online RGB to HEX tool](https://appsaeed.github.io/ftools/rgb-to-hex)
-**rgbToHex | hexToRgb**
-
+```    
+**`rgbToHex`** – Converts RGB color values to a HEX color string.
+**`hexToRgb`** – Converts a HEX color string into RGB values.  
 ```js
+import { rgbToHex, hexToRgb } from 'utilies';
 rgbToHex(10, 20, 100); // output: hex string: #0a1464
 
 hexToRgb("#1a098b"); // output: { red: number, green: number, blue: number } or null
 ```
 
-Query string parameters to JSON object:
-
+**`queryTojson`** – Converts a query string into a JSON object.  
 ```js
+import { queryTojson } from 'utilies';
 queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
 // output: { name: 'Javascript', ext: 'js', founder: 'Brendan Eich' }
 ```
 
-## Cookies
-Set cookies for client-side document cookies. Please ensure sensitive information is not stored in client-side cookies (browsers only).
+**`formatPrice`** – Formats a numerical price value for use with payment gateways like Stripe.
 ```js
+import { formatPrice } from 'utilies'
+formatPrice(20.3);
+```
+
+
+## Cookie  
+
+Easily manage client-side cookies in your application. Note: Avoid storing sensitive information in client-side cookies (browsers only).  
+
+- **`setCookie`** – Sets a cookie with a specified name, value, expiration days, and optional path.  
+- **`getCookie`** – Retrieves the value of a cookie by name.  
+- **`hasCookie`** – Checks if a cookie with the specified name exists (`true` or `false`).  
+
+```js
+import { setCookie, getCookie, hasCookie } from 'utilies';
+
 const cookieName = "cookie-name";
-const cookieValue = "example_value";
+const cookieValue = "example_value" // string | object | array | boolean support;
 const cookieDays = 30;
 const cookiePath = ""; // optional
 
@@ -184,36 +204,42 @@ getCookie(cookieName) // output: example_value
 hasCookie(cookieName); // output: true or false
 ```
 
-## Datetime
-Format date/time with your chosen options using JavaScript's built-in [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) (browsers / Node.js support)
+
+## Datetime 
+
+Format and manipulate date and time with built-in JavaScript functions and customizable options.  
+
+**`date`** – Formats a date string into a readable date format (e.g., `Mar 28, 23`).
 ```js
-// CommonJS 
-const { toDate } = require('utilies'); // CommonJS required with named import
-toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+import { date } from 'utilies';
 
-const utils = require('utilies'); // CommonJS import all
-utils.toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+date("2023-03-28 20:04:10"); // output: Mar 28, 23
 
-// ES6 module import syntax 
-toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
+```
+**`dateTime`** – Formats a date string into a readable date and time format (e.g., `Mar 28, 23 08:04 PM`).
+```js
+import { dateTime } from 'utilies';
+dateTime("2023-03-28 20:04:10"); // output: Mar 28, 23 08:04 PM
+//or 
+datetime("2023-03-28 20:04:10"); // output: Mar 28, 23 08:04 PM
 ```
 
+**`time`** – Extracts and formats the time portion from a given date string (e.g., `08:04 PM`).  
 ```js
-toDatetime("2023-03-28 20:04:10"); // output: Mar 28, 23 08:04 PM
+import { time } from 'utilies';
 
-toDate("2023-03-28 20:04:10"); // output: Mar 28, 23
-toTime("2023-03-28 20:04:10"); // output: 08:04 PM
+time("2023-03-28 20:04:10"); // output: 08:04 PM
+```
 
-/*
- * Custom format options are the same for all date functions
- * Options details: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
- */
-toDatetime("2023-03-28 20:04:10", options);
+You can customize the output format using options supported by JavaScript's [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString).  
+
+```js
+datTime("2023-03-28 20:04:10", options);
 
 const language = 'en-US' // or ['en-US', 'en-GB'];
-toDatetime("2023-03-28 20:04:10", options, language);
-toTime("2023-03-28 20:04:10", options, language);
-toDate("2023-03-28 20:04:10", options, language);
+dateTime("2023-03-28 20:04:10", options, language);
+time("2023-03-28 20:04:10", options, language);
+date("2023-03-28 20:04:10", options, language);
 ```
 
 ## Detection
