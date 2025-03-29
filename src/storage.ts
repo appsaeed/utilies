@@ -14,7 +14,7 @@ export function setSession<T>(name: string, data: T): T {
  */
 export function getSession<T>(name: string): T | null {
 	const session = sessionStorage.getItem(name) || "";
-	return catchOrNull<T>(JSON.parse(decryptSync(session)));
+	return catchOrNull<T>(() => JSON.parse(decryptSync(session)));
 }
 
 //remove session storage
@@ -33,7 +33,7 @@ export function setStorage<T>(name: string, data: T): T {
  */
 export function getStorage<T>(name: string): T | null {
 	const storage = localStorage.getItem(name) || "";
-	return catchOrNull<T>(JSON.parse(decryptSync(storage)));
+	return catchOrNull<T>(() => JSON.parse(decryptSync(storage)));
 }
 
 /**
