@@ -22,7 +22,7 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 - [Load](#load) - Load DOM elements, images, and more (browsers only)
 - [Math](#math) - Simple math calculations for JavaScript applications
 - [Storage](#storage) - Local storage and session storage utilities (browsers only)
-- [String](#string) - Modify strings and remove HTML
+- [String](#string-manipulation) - Modify strings and remove HTML
 - [URL](#url) - Convenient URL/string modification utilities
 - [Validation](#validation) - Client-side validation for emails, numbers, forms, etc.
 - [Developers](#developers) - Repository maintenance and command scripts
@@ -379,17 +379,36 @@ setThemeStore("light", 'app_theme');
 getThemeStore('app_theme'); // output: light
 ```
 
-## String
-Modify strings, convert HTML string tags to valid text, etc. (browsers/Node.js support)
+## String manipulation
+
+A set of handy functions to simplify string manipulation
+
+**`removeHtml`** – Removes all HTML tags from a string, leaving only the text content.
 ```js
+import { removeHtml } from 'utilies'
 // Remove HTML characters from string
 removeHtml("<h1>Hello world</h1>"); // output: Hello world
+```
+
+**`cssToMillisecond` – Converts CSS time values like `1s` or `100ms` into milliseconds.
+
+```js
+import { cssDurationToMillisecond, cssToMillisecond } from 'utilies'
 
 // Convert CSS duration to milliseconds
 cssDurationToMillisecond("1s"); // output: 1000
 cssDurationToMillisecond("100ms"); // output: 100
 // or 
 cssToMillisecond('1s'); // output: 1000
+```
+
+**`capitalize`** – Capitalizes the first letter of a string while keeping the rest unchanged.  
+
+```js
+import { capitalize } from 'utilies'
+
+capitalize("hello"); // output: Hello
+capitalize("hi"); // output: Hi
 ```
 
 ## URL
