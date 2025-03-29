@@ -18,9 +18,8 @@ JavaScript utility helpers designed to enhance developer experience, increase pr
 - [Errors](#errors) - Convert errors to strings for display
 - [Exporting](#exporting) - Export PDF, document files with client-side JavaScript
 - [Generate](#generate) - Generate random strings, numbers, UUIDs, and more
-- [Load](#load) - Load DOM elements, images, and more (browsers only)
-- [Math](#math) - Simple math calculations for JavaScript applications
-- [Storage](#storage) - Local storage and session storage utilities (browsers only)
+- [Load and Observe](#load-and-observe) - Load DOM elements, images, and more (browsers only)
+- [Session & Storage](#browser-session--storage) - Browser session and Local storage.
 - [String](#string-manipulation) - Modify strings and remove HTML
 - [URL](#url) - Convenient URL/string modification utilities
 - [Validation](#validation) - Client-side validation for emails, numbers, forms, etc.
@@ -37,16 +36,17 @@ npm install utilies
 
 ## Theme Detection & Management  
 
-Easily detect, retrieve, and manage theme preferences in your application.
+Easily detect, retrieve, and manage theme preferences in your application.  
 
-
-**`themeSchema`** – Detects the device's current theme (`dark` or `light`).
+### **Get theme schema: `themeSchema`**  
+Detects the device's current theme (`dark` or `light`).
 ```js
 import { themeSchema } from 'utilies'
 themeSchema // output: dark or light based on device theme schema
-```  
+``` 
 
-**`isDarkSchema` / `isDark`** – Checks if the device is using a dark theme (`true` or `false`).
+### **Detect device schema is dark : `isDarkSchema` / `isDark`**  
+Checks if the device is using a dark theme (`true` or `false`).
 ```js
 import { isDarkSchema, isDark } from 'utilies'
 isDarkSchema // output: true or false based on device theme schema
@@ -54,16 +54,17 @@ isDarkSchema // output: true or false based on device theme schema
 isDark // output: boolean
 ```  
 
-
-**`setTheme`** – Saves a preferred theme (`dark` or `light`) to local storage.
+### **`setTheme`**  
+Saves a preferred theme (`dark` or `light`) to local storage.
 ```js
 import { setTheme } from 'utilies'
 
 setTheme('dark') // save the dark theme to local storage
-setTheme('light')
+setTheme('light') // save the light theme to local storage
 ```
 
-**`getTheme` / `theme`** – Retrieves the saved theme from local storage; defaults to system preference if not set.
+### **`getTheme` / `theme`**  
+Retrieves the saved theme from local storage; defaults to system preference if not set.
 ```js
 import { getTheme, theme } from 'utilies'
 
@@ -72,14 +73,15 @@ getTheme('my_theme') // with storage key name (optional)
 theme // output: dark or light - works the same as getTheme if no storage key is provided
 ```  
 
-**`themeIs`** – Checks if the current theme matches a specific value (`dark` or `light`).  
+
+### **`themeIs`**  
+Checks if the current theme matches a specific value (`dark` or `light`).
 ```js
 import { themeIs, theme } from 'utilies'
 
 themeIs('dark', theme) // true 
 themeIs('light', theme) // false 
 ```
-
 
 
 
@@ -368,8 +370,14 @@ uuidv1(); // output: string unique uuidv1
 uuidv4(); // output: string unique uuidv4
 ```
 
-## Load
-Load/observe images, elements, etc. (browsers only)
+## Load and Observe  
+
+Efficiently load and observe images and elements, with support for lazy loading and visibility detection.  
+
+- **`loadImage`** – Loads an image from a URL and executes a callback once loaded.  
+- **`lazyLoadImage`** – Lazy loads an image when it comes into view using `IntersectionObserver`.  
+- **`lazyLoadElm`** – Lazy loads any DOM element when it comes into view using `IntersectionObserver`.  
+- **`isElementInViewport` / `isViewElm`** – Checks if a specific element is currently in the viewport (visible on screen).  
 ```js
 // Load image by URL in JavaScript
 loadImage("image-url.png").then(function (image) {
@@ -403,20 +411,13 @@ isElementInViewport(element) // output: true when the element is in view
 isViewElm(element) // output: true when the element is in view
 ```
 
-## Math
-Calculate loan interest (browsers / Node.js support)
-```js
-loanPerMonth(amount, interest, duration); // output: number of loan per month
+## Browser Session & Storage  
 
-loanPerYear(amount, interest, duration); // output: number of loan per month
+Manage data storage in the browser using session storage, local storage, and theme storage.  
 
-loanPerday(amount, interest, duration); // output: number of loan per month
-```
+### **Browser local session**  
+Session helper functions will help us to create and manage session efficently with secure encryption support.
 
-## Storage
-
-**Session storage**
-Working with **browser** session storage
 ```js
 setSession("sessionName", "Hello World!");
 getSession("sessionName"); // output: "Hello World!"
@@ -433,8 +434,8 @@ cleanSession("sessionName");
 // The session is removed
 ```
 
-**Local storage**
-**Browser** local storage
+### **Local Storage**  
+Local storage retains data even after the browser is closed. It enables storing and retrieving different data types, including objects and numbers.
 ```js
 setStorage("store_name", "Hello World!");
 getStorage("store_name"); // output: "Hello World!"
@@ -451,8 +452,8 @@ cleanStorage("store_name");
 // The storage is removed
 ```
 
-**Theme storage**
-Store theme settings using built-in localStorage 
+### **Theme Storage**  
+Theme storage provides a simple way to save and retrieve theme preferences using local storage, supporting custom key names.  
 ```js
 setThemeStore("dark");
 getThemeStore(); // output: dark
@@ -461,6 +462,8 @@ getThemeStore(); // output: dark
 setThemeStore("light", 'app_theme');
 getThemeStore('app_theme'); // output: light
 ```
+
+
 
 ## String manipulation
 
@@ -494,8 +497,14 @@ capitalize("hello"); // output: Hello
 capitalize("hi"); // output: Hi
 ```
 
-## URL
-Get home URL (browsers only)
+
+
+## URL helpers  
+
+Perform various URL-related operations, such as generating home URLs, converting text to SEO-friendly URLs, managing slashes, joining paths, and parsing query strings.  
+
+### **Get Home URL**  
+Retrieve the base URL and append paths dynamically.  
 ```js
 import { url } from "utilies";
 
@@ -505,7 +514,9 @@ url('hello-world') // output: http://example.com/hello-world
 url(['hello','world']) // output: http://example.com/hello/world
 ```
 
-Convert text to SEO-friendly URL and back (browsers / Node.js support) 
+### **Convert Text to SEO-Friendly URL and Back**  
+Transform text into a clean, SEO-friendly URL format and convert it back to readable text.
+
 ```js
 // Text to SEO-friendly URL
 textToSeo("Hello: I am JavaScript"); // output: hello-i-am-javascript
@@ -518,9 +529,10 @@ seoToString("hello-iam-javascript"); // output: hello i am javascript
 seoToText("hello-iam-javascript");  // output: hello i am javascript
 // or 
 urlToText("hello-iam-javascript")   // output: hello i am javascript
-```
+```  
 
-Add/remove slashes from a URL (browsers / Node.js support) 
+### **Add/Remove Slashes from a URL**  
+Manage slashes in URLs, including adding or removing them from the beginning, end, or both sides. 
 ```js
 // Add slash to the end of the URL
 addSlash("http://example.com"); // output: http://example.com/
@@ -544,7 +556,8 @@ unSlashL("/example.com/hello/"); // output: example.com/hello/
 unSlashR("/example.com/hello/"); // output: /example.com/hello
 ```
 
-**Path/URL join** (supports Node.js & browsers)
+### **Path/URL Join**  
+Efficiently join URL segments, supporting various data types like arrays and objects.  
 ```js
 pathJoin('example.com', 'hello', false, [], {name: 'Saeed'}, 10) 
 // output: example.com/hello/10
@@ -554,39 +567,55 @@ pathJoin('example.com', 'hello', false, ['new', 'task'], { name: 'Saeed' }, 10)
 // urlJoin is an alias for pathJoin
 ```
 
-Query string parameters to JSON object:
+### **Query String to JSON**  
+Convert query string parameters into a structured JSON object. 
 ```js
-import { queryTojson } from 'utilies';
 queryTojson('name=Javascript&ext=js&founder=Brendan Eich');
 // output: { name: 'Javascript', ext: 'js', founder: 'Brendan Eich' }
 ```
 
-## Validation
-Validate email, phone number (browsers / Node.js support)
+
+## Validation  
+
+Perform validation checks for email addresses and phone numbers, ensuring proper formatting and correctness.  
+
+### **Email Validation**  
+Verify whether a given string is a valid email address.
 ```js
 isMail("yourmail@domain.com"); // output: true
 isMail("domain.com"); // output: false
+```  
 
+### **Phone Number Validation**  
+Check if a given string is a valid phone number.  
+```js
 isPhoneNumber("abc10832749"); // output: false
 isPhoneNumber("10986499204"); // output: true
 ```
 
-## Other Packages
 
-Discover our best NPM Packages and Vite Plugins that offer user-friendly tools to boost performance and simplify tasks in your Vite-based web development. From streamlining workflows to adding exciting features, find everything you need to take your projects to the next level.
-<br>
-- [vite-svg](https://github.com/appsaeed/vite-svg) - Vite SVG plugin: effortless SVG import with support for various formats (JSON, raw string, object, etc.).
-- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) - This plugin helps create a sitemap in your Vite project.
+## Developers  
 
-## Developers
+Contribute to the project by cloning the repository and building the TypeScript source code.  
+
 ```sh
 git clone https://github.com/appsaeed/utilies.git
 
 # TypeScript build
-npm run build # test and compile TypeScript
+npm run build # Test and compile TypeScript
 ```
 
-## License
+
+## Other Packages  
+
+Explore additional JavaScript helper packages designed to simplify development and improve functionality across various projects.  
+
+### **NPM Packages:**  
+- [vite-svg](https://github.com/appsaeed/vite-svg) – Vite SVG plugin: easy SVG import with format support JSON, raw string, object, etc.  
+- [vite-sitemap](https://github.com/appsaeed/vite-sitemap) – Automatically generates sitemaps for Vite projects.  
+
+
+## License  
 
 Copyright © 2025 [appsaeed](https://appsaeed.github.io)
 
