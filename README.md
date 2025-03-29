@@ -126,10 +126,14 @@ errorsToString('error 1', 'error 2') // output: "error 1, error 2"
 // or 
 extractErrors('error 1', 'error 2') // output: "error 1, error 2"
 ```  
+## Clipboard Helpers  
 
-## Clipboard
-Copy text/image to clipboard using window navigator [clipboard](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard) or fallback to document textarea.
+Easily copy text or images to the clipboard using the **Clipboard API** with a fallback for better browser support.  
+
+**`toClipboard` / `copyToClipboard`** – Copies a given text string to the clipboard.  
+**`copyImageToClipboard`** – Copies an image to the clipboard using its URL.  
 ```js
+import { toClipboard } from 'utilies';
 // Copy text to clipboard
 toClipboard("hello world");
 // or 
@@ -139,6 +143,7 @@ copyToClipboard("hello world");
 const imageUrl = "image/examples/image.png";
 copyImageToClipboard(imageUrl);
 ```
+For more details, refer to the [Clipboard API documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Interact_with_the_clipboard).  
 
 ## Convert
 ```js
